@@ -1,6 +1,8 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import routes from './routes';
+import { errorMiddleware } from './middleware/error.middleware';
 
 dotenv.config();
 
@@ -10,9 +12,11 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-app.get('/health', (req: Request, res: Response) => {
-  res.json({ status: 'ok', message: 'Backend is running' });
-});
+// Routes
+app.use('/api', routes);
+
+// Error Handling
+app.use(errorMiddleware);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
