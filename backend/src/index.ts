@@ -1,23 +1,33 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import helmet from 'helmet';
+import path from 'path';
 import routes from './routes';
 import { errorMiddleware } from './middleware/error.middleware';
-
-dotenv.config();
+import { apiLimiter } from './middleware/rateLimit.middleware';
+import { logger } from './utils/logger';
+import { cleanExpiredSessions } from './services/pdf.service';
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT ?? 3002;
 
-app.use(cors());
-app.use(express.json());
+app.set('trust proxy', 1);
 
-// Routes
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use(cors({
+  origin: process.env.CORS_ORIGIN ?? '*',
+  credentials: true,
+}));
+app.use(express.json({ limit: '1mb' }));
+app.use(apiLimiter);
+
 app.use('/api', routes);
-
-// Error Handling
 app.use(errorMiddleware);
 
+// Clean expired PDF sessions every 15 minutes
+setInterval(cleanExpiredSessions, 15 * 60 * 1000);
+
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  logger.info(`SmartWallets-AI backend running on port ${port}`);
 });

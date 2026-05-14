@@ -1,49 +1,48 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import AuthPage from './pages/AuthPage';
+import DashboardPage from './pages/DashboardPage';
+import UploadPage from './pages/UploadPage';
 
-function App() {
-  const [count, setCount] = useState(0)
-  const [backendStatus, setBackendStatus] = useState<string>('Checking...')
-
-  useEffect(() => {
-    const checkBackend = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/health')
-        setBackendStatus(response.data.message)
-      } catch (error) {
-        setBackendStatus('Backend unreachable')
-        console.error('Error connecting to backend:', error)
-      }
-    }
-    checkBackend()
-  }, [])
-
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>SmartWallets-AI</h1>
-          <p>
-            Backend Status: <strong>{backendStatus}</strong>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-    </>
-  )
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth();
+  if (loading) {
+    return (
+      <div className="row center" style={{ height: '100vh', gap: 12 }}>
+        <span className="spinner" />
+        <span className="text-3">Loading…</span>
+      </div>
+    );
+  }
+  if (!user) return <Navigate to="/login" replace />;
+  return <>{children}</>;
 }
 
-export default App
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<AuthPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/upload"
+            element={
+              <ProtectedRoute>
+                <UploadPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}

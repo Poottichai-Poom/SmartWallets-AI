@@ -1,25 +1,22 @@
 services:
-  db:
-    image: postgres:16-alpine
-    restart: always
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: smartwallets
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   backend:
     build: ./backend
     ports:
       - "3001:3001"
     environment:
-      DATABASE_URL: "postgresql://user:password@db:5432/smartwallets?schema=public"
       PORT: 3001
-    depends_on:
-      - db
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      ENCRYPTION_MASTER_KEY: ${ENCRYPTION_MASTER_KEY}
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      PDF_ACCESS_SESSION_MINUTES: 30
+      UPLOAD_DIR: /app/uploads
+      MAX_FILE_SIZE_MB: 10
+      CORS_ORIGIN: http://localhost
+      DB_FILE: /app/data/db.json
+    volumes:
+      - backend_uploads:/app/uploads
+      - backend_data:/app/data
 
   frontend:
     build: ./frontend
@@ -29,4 +26,5 @@ services:
       - backend
 
 volumes:
-  postgres_data:
+  backend_uploads:
+  backend_data:
