@@ -41,14 +41,19 @@ SmartWallets-AI/
 
 ### 1. ติดตั้ง Ollama และ model
 
+**macOS**
 ```bash
-# ติดตั้ง Ollama (macOS)
 brew install ollama
-
-# ดาวน์โหลด model
 ollama pull gemma3
+ollama serve
+```
 
-# รัน Ollama (ต้องรันไว้ตลอดเวลา)
+**Windows**
+1. ดาวน์โหลดตัวติดตั้งจาก [https://ollama.com/download](https://ollama.com/download)
+2. รันไฟล์ `OllamaSetup.exe`
+3. เปิด PowerShell หรือ Command Prompt แล้วรัน:
+```powershell
+ollama pull gemma3
 ollama serve
 ```
 

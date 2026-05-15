@@ -144,18 +144,19 @@ async function extractTransactionsFromPDF(buffer, bankPassword) {
     for (let offset = 0; offset < text.length; offset += CHUNK) {
         const chunk = text.slice(offset, offset + CHUNK);
         try {
-            const prompt = `Extract transactions from Thai bank statement chunk. Return JSON: {"transactions":[{date:"YYYY-MM-DD",merchant:"name",amount:number,type:"debit"|"credit",balance:number,note:"raw"},...]}
-Rules: amount positive; credit=deposits/เงินเข้า/โอนเข้า/กยศ/CR, debit=withdrawals/โอนออก/ถอน/DR. Buddhist Era dates: subtract 543. Return ONLY JSON.
+            const prompt = `Extract transactions from Thai bank statement chunk. Return JSON: {"transactions":[{date:"DD/MM/YY as-is from text",merchant:"name",amount:number,type:"debit"|"credit",balance:number,note:"raw"},...]}
+Rules: amount positive; credit=deposits/เงินเข้า/โอนเข้า/กยศ/CR, debit=withdrawals/โอนออก/ถอน/DR. Return date EXACTLY as it appears in the text (e.g. 01/02/69), do NOT convert. Return ONLY JSON.
 
 ${chunk}`;
             const result = await ollamaJSON(prompt);
             if (Array.isArray(result?.transactions)) {
                 const normalized = result.transactions.map(t => ({
                     ...t,
-                    date: /^\d{4}-\d{2}-\d{2}$/.test(t.date) ? t.date : (normalizeDateStr(t.date) ?? t.date),
+                    date: normalizeDateStr(String(t.date)) ?? t.date,
                 })).filter(t => /^\d{4}-\d{2}-\d{2}$/.test(t.date));
                 allExtracted.push(...normalized);
-                log(`Ollama chunk ${offset}-${offset + CHUNK}: ${normalized.length} txns`);
+                const dates = normalized.map(t => t.date).join(', ');
+                log(`Ollama chunk ${offset}-${offset + CHUNK}: ${normalized.length} txns | dates: ${dates}`);
             }
         }
         catch (err) {
