@@ -69,13 +69,13 @@ function importExtractedTransactions(userId, pdfId, extracted) {
             continue;
         if (t.amount <= 0)
             continue;
-        // Deduplication: check against DB and current batch
-        const isDupInDB = existing.some(e => e.date === t.date &&
-            Math.abs(e.amount - t.amount) < 0.01 &&
-            e.merchant.toLowerCase().trim() === t.merchant.toLowerCase().trim());
-        const isDupInBatch = toImport.some(i => i.date === t.date &&
-            Math.abs(i.amount - t.amount) < 0.01 &&
-            i.merchant.toLowerCase().trim() === t.merchant.toLowerCase().trim());
+        // Deduplication: same date+amount+merchant AND same balance (if available)
+        const isSameTxn = (a, b) => a.date === b.date &&
+            Math.abs(a.amount - b.amount) < 0.01 &&
+            a.merchant.toLowerCase().trim() === b.merchant.toLowerCase().trim() &&
+            (b.balance == null || a.balance == null || Math.abs((a.balance ?? 0) - (b.balance ?? 0)) < 0.01);
+        const isDupInDB = existing.some(e => isSameTxn(e, t));
+        const isDupInBatch = toImport.some(i => isSameTxn(i, t));
         if (!isDupInDB && !isDupInBatch) {
             const key = merchantKey(t.note, t.merchant);
             const saved = store_1.db.findMerchantMapping(userId, key);

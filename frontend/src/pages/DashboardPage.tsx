@@ -17,6 +17,7 @@ export default function DashboardPage() {
   const [daily, setDaily] = useState<number[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [analysis, setAnalysis] = useState<string>('');
+  const [analysisError, setAnalysisError] = useState<string>('');
 const [loading, setLoading] = useState(true);
   const [showRecs, setShowRecs] = useState(false);
   const [loadingRecs, setLoadingRecs] = useState(false);
@@ -43,12 +44,15 @@ const [loading, setLoading] = useState(true);
 
   async function loadRecommendations() {
     setAnalysis('');
+    setAnalysisError('');
     setShowRecs(false);
     setLoadingRecs(true);
     try {
       const recRes = await analysisApi.recommendations(month);
       setAnalysis(recRes.data.analysis);
       setShowRecs(true);
+    } catch (err: any) {
+      setAnalysisError(err?.response?.data?.message ?? 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
     } finally {
       setLoadingRecs(false);
     }
@@ -140,11 +144,13 @@ const [loading, setLoading] = useState(true);
                     }} />
                   ))}
                 </div>
+              ) : analysisError ? (
+                <p className="text-sm" style={{ color: 'var(--leak)' }}>{analysisError}</p>
               ) : showRecs && analysis ? (
                 <p style={{ fontSize: 14, lineHeight: 1.75, color: 'var(--text-2)' }}>{analysis}</p>
-              ) : !showRecs ? (
+              ) : (
                 <p className="text-3 text-sm">คลิก "วิเคราะห์" เพื่อให้ AI วิเคราะห์การใช้เงินของคุณ</p>
-              ) : null}
+              )}
             </div>
 
 

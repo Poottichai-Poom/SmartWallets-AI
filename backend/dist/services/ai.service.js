@@ -49,15 +49,23 @@ const logger_1 = require("../utils/logger");
 const OLLAMA_HOST = process.env.OLLAMA_HOST ?? 'http://localhost:11434';
 const OLLAMA_MODEL = process.env.OLLAMA_MODEL ?? 'gemma3';
 async function ollamaJSON(prompt) {
-    const res = await fetch(`${OLLAMA_HOST}/api/generate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: OLLAMA_MODEL, prompt, format: 'json', stream: false }),
-    });
-    if (!res.ok)
-        throw new Error(`Ollama ${res.status}: ${await res.text()}`);
-    const data = await res.json();
-    return JSON.parse(data.response);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 120000);
+    try {
+        const res = await fetch(`${OLLAMA_HOST}/api/generate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: OLLAMA_MODEL, prompt, format: 'json', stream: false, options: { num_ctx: 8192 } }),
+            signal: controller.signal,
+        });
+        if (!res.ok)
+            throw new Error(`Ollama ${res.status}: ${await res.text()}`);
+        const data = await res.json();
+        return JSON.parse(data.response);
+    }
+    finally {
+        clearTimeout(timeout);
+    }
 }
 const CATEGORIES = {
     rent: { en: 'Housing', th: 'ที่อยู่อาศัย', type: 'needs', keywords: ['rent', 'property', 'apartment', 'condo', 'house', 'housing'] },
@@ -123,6 +131,7 @@ async function extractTransactionsFromPDF(buffer, bankPassword) {
         }
         text = fullText;
         log(`Text extraction complete, length: ${text.length}`);
+        fs_1.default.writeFileSync(path_1.default.resolve(__dirname, '../../pdf_text_debug.txt'), text, 'utf8');
     }
     catch (err) {
         log(`PDF extraction error: ${err.message || err.name || JSON.stringify(err)}`);
@@ -130,32 +139,32 @@ async function extractTransactionsFromPDF(buffer, bankPassword) {
         logger_1.logger.warn('PDF extraction failed — wrong bank password or unsupported format', { err });
         throw new Error('ไม่สามารถอ่าน PDF ได้ — ตรวจสอบรหัสผ่าน PDF จากธนาคาร');
     }
-    try {
-        const prompt = `You are a financial data extraction assistant for Thai bank statements.
-Extract ALL transactions from the following bank statement text and return a JSON object with key "transactions" containing an array.
+    const CHUNK = 3000;
+    const allExtracted = [];
+    for (let offset = 0; offset < text.length; offset += CHUNK) {
+        const chunk = text.slice(offset, offset + CHUNK);
+        try {
+            const prompt = `Extract transactions from Thai bank statement chunk. Return JSON: {"transactions":[{date:"YYYY-MM-DD",merchant:"name",amount:number,type:"debit"|"credit",balance:number,note:"raw"},...]}
+Rules: amount positive; credit=deposits/เงินเข้า/โอนเข้า/กยศ/CR, debit=withdrawals/โอนออก/ถอน/DR. Buddhist Era dates: subtract 543. Return ONLY JSON.
 
-For each transaction provide:
-- date: ISO date string YYYY-MM-DD
-- merchant: merchant/payee name (clean, no codes)
-- amount: absolute numeric value (no currency symbols)
-- type: "debit" for expenses/withdrawals (ถอน/จ่าย/โอนออก), "credit" for income/deposits (ฝาก/เงินเข้า/โอนเข้า)
-- balance: the running balance (ยอดเงินคงเหลือ) after this transaction (numeric value)
-- note: original description text
-
-CRITICAL: Look for keywords like "เงินโอนเข้า", "Deposit", "CR", "Education Loan", "กยศ", "กองทุนให้กู้ยืม" for credit. Look for "จ่าย", "โอนเงินออก", "ถอน", "DR" for debit.
-
-Return ONLY a valid JSON object like: {"transactions": [...]}
-
-Bank statement text:
-${text.slice(0, 10000)}`;
-        const result = await ollamaJSON(prompt);
-        if (Array.isArray(result?.transactions) && result.transactions.length > 0) {
-            logger_1.logger.info(`Ollama extracted ${result.transactions.length} transactions`);
-            return result.transactions;
+${chunk}`;
+            const result = await ollamaJSON(prompt);
+            if (Array.isArray(result?.transactions)) {
+                const normalized = result.transactions.map(t => ({
+                    ...t,
+                    date: /^\d{4}-\d{2}-\d{2}$/.test(t.date) ? t.date : (normalizeDateStr(t.date) ?? t.date),
+                })).filter(t => /^\d{4}-\d{2}-\d{2}$/.test(t.date));
+                allExtracted.push(...normalized);
+                log(`Ollama chunk ${offset}-${offset + CHUNK}: ${normalized.length} txns`);
+            }
+        }
+        catch (err) {
+            log(`Ollama chunk ${offset} failed: ${err?.message}`);
         }
     }
-    catch (err) {
-        logger_1.logger.warn(`Ollama extraction failed, using fallback: ${err?.message}`);
+    if (allExtracted.length > 0) {
+        logger_1.logger.info(`Ollama extracted ${allExtracted.length} transactions total`);
+        return allExtracted;
     }
     return parseTextFallback(text);
 }

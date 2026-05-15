@@ -30,8 +30,11 @@ api.interceptors.response.use(
         } catch {
           localStorage.clear();
           window.location.href = '/login';
+          return Promise.reject(err);
         }
       }
+      localStorage.clear();
+      window.location.href = '/login';
     }
     return Promise.reject(err);
   }

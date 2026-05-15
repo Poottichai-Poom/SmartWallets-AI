@@ -9,7 +9,7 @@ export const pdfApi = {
     form.append('pdf', file);
     if (month) form.append('month', month);
     return api.post<{ pdf: PDFStatement; sessionToken: string; expiresAt: string }>('/pdf', form, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { 'Content-Type': undefined },
     });
   },
 
