@@ -6,7 +6,6 @@ import * as aiService from '../services/ai.service';
 import * as txnService from '../services/transaction.service';
 
 export const uploadValidators = [
-  body('password').isLength({ min: 4 }).withMessage('Access password must be at least 4 characters'),
   body('month').optional().matches(/^\d{4}-\d{2}$/).withMessage('Month must be YYYY-MM format'),
 ];
 
@@ -17,7 +16,7 @@ export const verifyValidators = [
 export async function uploadPDF(req: AuthRequest, res: Response, next: NextFunction) {
   try {
     if (!req.file) { res.status(400).json({ message: 'PDF file required' }); return; }
-    const { password, month } = req.body;
+    const { month } = req.body;
 
     // If month is provided, find and delete old PDFs for the same month to replace data
     if (month) {
@@ -29,11 +28,10 @@ export async function uploadPDF(req: AuthRequest, res: Response, next: NextFunct
       }
     }
 
-    const pdf = await pdfService.storePDF(
+    const { pdf, sessionToken, expiresAt } = await pdfService.storePDF(
       req.user!.id,
       req.file.originalname,
       req.file.buffer,
-      password,
       month
     );
     res.status(201).json({
@@ -45,6 +43,8 @@ export async function uploadPDF(req: AuthRequest, res: Response, next: NextFunct
         month: pdf.month,
         createdAt: pdf.createdAt,
       },
+      sessionToken,
+      expiresAt,
     });
   } catch (err) { next(err); }
 }

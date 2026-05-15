@@ -1,14 +1,13 @@
-import type { MonthlySummary, IncomeSource } from '../../types/api';
+import type { MonthlySummary } from '../../types/api';
 
 interface Props {
   summary: MonthlySummary;
-  income: IncomeSource[];
 }
 
 function fmt(n: number) { return '฿' + Math.round(n).toLocaleString('en-US'); }
 function fmtK(n: number) { return n >= 1000 ? '฿' + (n / 1000).toFixed(1) + 'k' : '฿' + Math.round(n); }
 
-export default function KPICards({ summary, income }: Props) {
+export default function KPICards({ summary }: Props) {
   const totalIncome = summary.totalIncome;
   const savingsAmt = totalIncome - summary.totalExpenses;
   const needsPct = summary.totalExpenses > 0 ? Math.round(summary.needsTotal / summary.totalExpenses * 100) : 0;

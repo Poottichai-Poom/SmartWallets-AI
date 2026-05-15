@@ -7,6 +7,15 @@ exports.deleteTransaction = deleteTransaction;
 exports.importExtractedTransactions = importExtractedTransactions;
 const store_1 = require("../db/store");
 const ai_service_1 = require("./ai.service");
+function merchantKey(note, merchant) {
+    if (note) {
+        // Capture method code e.g. (IORSWT) and account/bill code e.g. 014-4300868673
+        const m = note.match(/\((\w+)\)\s+(\S+)/);
+        if (m)
+            return `${m[1]}:${m[2].replace(/~+$/, '')}`.toLowerCase();
+    }
+    return merchant.toLowerCase().trim();
+}
 function getTransactions(userId, opts = {}) {
     return store_1.db.findTransactionsByUser(userId, opts);
 }
@@ -29,6 +38,17 @@ function updateTransaction(id, userId, data) {
     const updated = store_1.db.updateTransaction(id, userId, data);
     if (!updated)
         throw Object.assign(new Error('Transaction not found'), { status: 404 });
+    if (data.catId && data.type) {
+        const key = merchantKey(updated.note, updated.merchant);
+        store_1.db.upsertMerchantMapping(userId, key, data.catId, data.type);
+        // Sync all other transactions with the same merchant key
+        const { items: all } = store_1.db.findTransactionsByUser(userId, { limit: 9999 });
+        for (const t of all) {
+            if (t.id !== id && merchantKey(t.note, t.merchant) === key) {
+                store_1.db.updateTransaction(t.id, userId, { catId: data.catId, type: data.type });
+            }
+        }
+    }
     return updated;
 }
 function deleteTransaction(id, userId) {
@@ -57,7 +77,11 @@ function importExtractedTransactions(userId, pdfId, extracted) {
             Math.abs(i.amount - t.amount) < 0.01 &&
             i.merchant.toLowerCase().trim() === t.merchant.toLowerCase().trim());
         if (!isDupInDB && !isDupInBatch) {
-            const { catId, type } = (0, ai_service_1.categorize)(t.merchant, t.note, t.type);
+            const key = merchantKey(t.note, t.merchant);
+            const saved = store_1.db.findMerchantMapping(userId, key);
+            const { catId, type } = saved
+                ? { catId: saved.catId, type: saved.type }
+                : (0, ai_service_1.categorize)(t.merchant, t.note, t.type);
             toImport.push({
                 userId,
                 pdfId,

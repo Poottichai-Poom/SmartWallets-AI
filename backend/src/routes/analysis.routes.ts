@@ -10,6 +10,7 @@ router.get('/summary',         ctrl.summary);
 router.get('/categories',      ctrl.categories);
 router.get('/daily',           ctrl.daily);
 router.get('/leaks',           ctrl.leaks);
-router.get('/recommendations', ctrl.recommendations);
+router.get('/recommendations',         ctrl.recommendations);
+router.get('/recommended-allocation',  ctrl.recommendedAllocation);
 
 export default router;

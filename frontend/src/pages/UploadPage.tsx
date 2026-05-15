@@ -7,7 +7,7 @@ type Stage = 'pick' | 'password' | 'uploading' | 'analyzing' | 'done' | 'error';
 
 const STEPS = [
   { label: 'เลือกไฟล์ PDF', en: 'Select PDF file' },
-  { label: 'ตั้งรหัสเข้าถึง', en: 'Set access password' },
+  { label: 'กรอกข้อมูลเพิ่มเติม', en: 'Fill in details' },
   { label: 'อัปโหลดและเข้ารหัส', en: 'Upload & encrypt' },
   { label: 'วิเคราะห์ด้วย AI', en: 'AI analysis' },
 ];
@@ -16,8 +16,6 @@ export default function UploadPage() {
   const [stage, setStage] = useState<Stage>('pick');
   const [drag, setDrag] = useState(false);
   const [file, setFile] = useState<File | null>(null);
-  const [password, setPassword] = useState('');
-  const [confirmPwd, setConfirmPwd] = useState('');
   const [bankPassword, setBankPassword] = useState('');
   const [month, setMonth] = useState(new Date().toISOString().slice(0, 7));
   const [error, setError] = useState('');
@@ -43,19 +41,14 @@ export default function UploadPage() {
   }
 
   async function handleUploadAndAnalyze() {
-    if (password.length < 4) { setError('รหัสผ่านต้องมีอย่างน้อย 4 ตัว'); return; }
-    if (password !== confirmPwd) { setError('รหัสผ่านไม่ตรงกัน'); return; }
     setError('');
 
     try {
       // Step 3: Upload
       setStage('uploading'); setActiveStep(2);
-      const uploadRes = await pdfApi.upload(file!, password, month);
+      const uploadRes = await pdfApi.upload(file!, month);
       const pdfId = uploadRes.data.pdf.id;
-
-      // Verify (get session token)
-      const verifyRes = await pdfApi.verify(pdfId, password);
-      const sessionToken = verifyRes.data.sessionToken;
+      const sessionToken = uploadRes.data.sessionToken;
 
       // Step 4: Analyze
       setStage('analyzing'); setActiveStep(3);
@@ -151,21 +144,12 @@ export default function UploadPage() {
                   <label className="label">เดือนของสเตทเมนต์ · Statement Month</label>
                   <input className="input" type="month" value={month} onChange={e => setMonth(e.target.value)} />
                 </div>
-                <div className="input-group">
-                  <label className="label">รหัสเข้าถึงไฟล์ · File Access Password</label>
-                  <input className="input" type="password" placeholder="อย่างน้อย 4 ตัว · min 4 chars" value={password} onChange={e => setPassword(e.target.value)} />
-                  <p className="text-xs text-3">รหัสนี้ใช้เพื่อปกป้องไฟล์ PDF ของคุณ — ไม่ใช่รหัสผ่านบัญชี</p>
-                </div>
-                <div className="input-group">
-                  <label className="label">ยืนยันรหัสผ่าน · Confirm Password</label>
-                  <input className="input" type="password" placeholder="ยืนยันรหัสผ่าน" value={confirmPwd} onChange={e => setConfirmPwd(e.target.value)} />
-                </div>
               </div>
 
               {error && <div className="auth-error mt-16">{error}</div>}
 
               <div className="row" style={{ gap: 10, marginTop: 20 }}>
-                <button className="btn" onClick={() => { setStage('pick'); setFile(null); setBankPassword(''); setError(''); }}>← กลับ</button>
+                <button className="btn" onClick={() => { setStage('pick'); setFile(null); setBankPassword(''); setError(''); setActiveStep(0); }}>← กลับ</button>
                 <button className="btn btn-primary grow" style={{ justifyContent: 'center' }} onClick={handleUploadAndAnalyze}>
                   อัปโหลดและวิเคราะห์ · Upload & Analyze
                 </button>
@@ -195,7 +179,7 @@ export default function UploadPage() {
               <h2 className="mt-16">วิเคราะห์สำเร็จ · Analysis Complete</h2>
               <p className="text-3 mt-8">พบ <span className="text-mint fw-700">{result.imported}</span> รายการ · Imported {result.imported} transactions</p>
               <div className="row center" style={{ gap: 12, marginTop: 24 }}>
-                <button className="btn" onClick={() => { setStage('pick'); setFile(null); setPassword(''); setConfirmPwd(''); setBankPassword(''); setError(''); setActiveStep(0); }}>
+                <button className="btn" onClick={() => { setStage('pick'); setFile(null); setBankPassword(''); setError(''); setActiveStep(0); }}>
                   อัปโหลดไฟล์อื่น
                 </button>
                 <button className="btn btn-primary" onClick={() => navigate('/dashboard')}>

@@ -3,6 +3,15 @@ import { Transaction, TxnType } from '../db/models';
 import { categorize } from './ai.service';
 import { ExtractedTransaction } from '../types';
 
+function merchantKey(note: string | undefined, merchant: string): string {
+  if (note) {
+    // Capture method code e.g. (IORSWT) and account/bill code e.g. 014-4300868673
+    const m = note.match(/\((\w+)\)\s+(\S+)/);
+    if (m) return `${m[1]}:${m[2].replace(/~+$/, '')}`.toLowerCase();
+  }
+  return merchant.toLowerCase().trim();
+}
+
 export function getTransactions(
   userId: string,
   opts: { month?: string; catId?: string; page?: number; limit?: number } = {}
@@ -44,6 +53,17 @@ export function updateTransaction(
 ) {
   const updated = db.updateTransaction(id, userId, data);
   if (!updated) throw Object.assign(new Error('Transaction not found'), { status: 404 });
+  if (data.catId && data.type) {
+    const key = merchantKey(updated.note, updated.merchant);
+    db.upsertMerchantMapping(userId, key, data.catId, data.type);
+    // Sync all other transactions with the same merchant key
+    const { items: all } = db.findTransactionsByUser(userId, { limit: 9999 });
+    for (const t of all) {
+      if (t.id !== id && merchantKey(t.note, t.merchant) === key) {
+        db.updateTransaction(t.id, userId, { catId: data.catId, type: data.type });
+      }
+    }
+  }
   return updated;
 }
 
@@ -86,7 +106,11 @@ export function importExtractedTransactions(
     );
 
     if (!isDupInDB && !isDupInBatch) {
-      const { catId, type } = categorize(t.merchant, t.note, t.type);
+      const key = merchantKey(t.note, t.merchant);
+      const saved = db.findMerchantMapping(userId, key);
+      const { catId, type } = saved
+        ? { catId: saved.catId, type: saved.type }
+        : categorize(t.merchant, t.note, t.type);
       toImport.push({
         userId,
         pdfId,

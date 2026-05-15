@@ -86,6 +86,15 @@ export interface Goal {
   updatedAt: string;
 }
 
+export interface MerchantMapping {
+  id: string;
+  userId: string;
+  merchantKey: string;
+  catId: string;
+  type: TxnType;
+  updatedAt: string;
+}
+
 export interface AuditLog {
   id: string;
   userId?: string;

@@ -12,12 +12,13 @@ class Store {
     constructor() {
         this.filePath = path_1.default.resolve(process.env.DB_FILE ?? './data/db.json');
         this.data = this.load();
+        this.migrateOutgoingTransfers();
     }
     load() {
         const empty = {
             users: [], refreshTokens: [], pdfStatements: [],
             pdfAccessSessions: [], transactions: [],
-            incomeSources: [], goals: [], auditLogs: [],
+            incomeSources: [], goals: [], auditLogs: [], merchantMappings: [],
         };
         try {
             if (fs_1.default.existsSync(this.filePath)) {
@@ -26,6 +27,21 @@ class Store {
         }
         catch { /* start fresh */ }
         return empty;
+    }
+    migrateOutgoingTransfers() {
+        const outgoingRe = /โอนเงินออก|transfer out|iorswt|morisw|morwsw|nmidsw/i;
+        let changed = false;
+        for (const t of this.data.transactions) {
+            const text = `${t.merchant} ${t.note ?? ''}`;
+            if (outgoingRe.test(text) && (t.type === 'income' || t.catId === 'income')) {
+                t.catId = 'misc';
+                t.type = 'wants';
+                t.updatedAt = now();
+                changed = true;
+            }
+        }
+        if (changed)
+            this.persist();
     }
     persist() {
         const dir = path_1.default.dirname(this.filePath);
@@ -220,6 +236,26 @@ class Store {
         if (deleted)
             this.persist();
         return deleted;
+    }
+    // ── Merchant Mappings ──────────────────────────────────────────────────────
+    upsertMerchantMapping(userId, merchantKey, catId, type) {
+        if (!this.data.merchantMappings)
+            this.data.merchantMappings = [];
+        const existing = this.data.merchantMappings.find(m => m.userId === userId && m.merchantKey === merchantKey);
+        if (existing) {
+            existing.catId = catId;
+            existing.type = type;
+            existing.updatedAt = now();
+        }
+        else {
+            this.data.merchantMappings.push({ id: (0, uuid_1.v4)(), userId, merchantKey, catId, type, updatedAt: now() });
+        }
+        this.persist();
+    }
+    findMerchantMapping(userId, merchantKey) {
+        if (!this.data.merchantMappings)
+            return undefined;
+        return this.data.merchantMappings.find(m => m.userId === userId && m.merchantKey === merchantKey);
     }
     // ── Audit Logs ─────────────────────────────────────────────────────────────
     createAuditLog(data) {

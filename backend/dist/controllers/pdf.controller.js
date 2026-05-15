@@ -45,7 +45,6 @@ const pdfService = __importStar(require("../services/pdf.service"));
 const aiService = __importStar(require("../services/ai.service"));
 const txnService = __importStar(require("../services/transaction.service"));
 exports.uploadValidators = [
-    (0, express_validator_1.body)('password').isLength({ min: 4 }).withMessage('Access password must be at least 4 characters'),
     (0, express_validator_1.body)('month').optional().matches(/^\d{4}-\d{2}$/).withMessage('Month must be YYYY-MM format'),
 ];
 exports.verifyValidators = [
@@ -57,7 +56,7 @@ async function uploadPDF(req, res, next) {
             res.status(400).json({ message: 'PDF file required' });
             return;
         }
-        const { password, month } = req.body;
+        const { month } = req.body;
         // If month is provided, find and delete old PDFs for the same month to replace data
         if (month) {
             const existing = pdfService.listUserPDFs(req.user.id);
@@ -67,7 +66,7 @@ async function uploadPDF(req, res, next) {
                 pdfService.deletePDF(old.id, req.user.id, req);
             }
         }
-        const pdf = await pdfService.storePDF(req.user.id, req.file.originalname, req.file.buffer, password, month);
+        const { pdf, sessionToken, expiresAt } = await pdfService.storePDF(req.user.id, req.file.originalname, req.file.buffer, month);
         res.status(201).json({
             message: 'PDF uploaded and encrypted successfully',
             pdf: {
@@ -77,6 +76,8 @@ async function uploadPDF(req, res, next) {
                 month: pdf.month,
                 createdAt: pdf.createdAt,
             },
+            sessionToken,
+            expiresAt,
         });
     }
     catch (err) {

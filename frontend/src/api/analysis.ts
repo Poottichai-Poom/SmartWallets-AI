@@ -1,5 +1,5 @@
 import api from './axios';
-import type { MonthlySummary, CategorySummary, SpendingLeak, AIRecommendation } from '../types/api';
+import type { MonthlySummary, CategorySummary, SpendingLeak, AllocationItem } from '../types/api';
 
 export const analysisApi = {
   summary: (month?: string) =>
@@ -15,5 +15,8 @@ export const analysisApi = {
     api.get<{ leaks: SpendingLeak[] }>('/analysis/leaks', { params: { month } }),
 
   recommendations: (month?: string) =>
-    api.get<{ recommendations: AIRecommendation[] }>('/analysis/recommendations', { params: { month } }),
+    api.get<{ analysis: string }>('/analysis/recommendations', { params: { month } }),
+
+  recommendedAllocation: (month?: string) =>
+    api.get<{ allocations: AllocationItem[]; totalIncome: number }>('/analysis/recommended-allocation', { params: { month } }),
 };

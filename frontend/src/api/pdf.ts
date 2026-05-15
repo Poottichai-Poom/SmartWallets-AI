@@ -4,18 +4,14 @@ import type { PDFStatement, Transaction } from '../types/api';
 export const pdfApi = {
   list: () => api.get<{ pdfs: PDFStatement[] }>('/pdf'),
 
-  upload: (file: File, password: string, month?: string) => {
+  upload: (file: File, month?: string) => {
     const form = new FormData();
     form.append('pdf', file);
-    form.append('password', password);
     if (month) form.append('month', month);
-    return api.post<{ pdf: PDFStatement }>('/pdf', form, {
+    return api.post<{ pdf: PDFStatement; sessionToken: string; expiresAt: string }>('/pdf', form, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
-
-  verify: (id: string, password: string) =>
-    api.post<{ sessionToken: string; expiresAt: string }>(`/pdf/${id}/verify`, { password }),
 
   analyze: (id: string, sessionToken: string, bankPassword?: string) =>
     api.post<{ transactionsImported: number; transactions: Transaction[] }>(

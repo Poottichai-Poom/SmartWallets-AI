@@ -44,8 +44,17 @@ export async function recommendations(req: AuthRequest, res: Response, next: Nex
   try {
     const month = (req.query.month as string) ?? currentMonth();
     const { items: transactions } = db.findTransactionsByUser(req.user!.id, { month, limit: 9999 });
-    const incomeSources = db.findIncomeSources(req.user!.id);
-    const recs = await aiService.generateRecommendations(transactions, incomeSources);
-    res.json({ recommendations: recs });
+    const analysis = await aiService.generateSpendingAnalysis(transactions);
+    res.json({ analysis });
+  } catch (err) { next(err); }
+}
+
+export async function recommendedAllocation(req: AuthRequest, res: Response, next: NextFunction) {
+  try {
+    const month = (req.query.month as string) ?? currentMonth();
+    const { items: transactions } = db.findTransactionsByUser(req.user!.id, { month, limit: 9999 });
+    const totalIncome = transactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+    const allocations = await aiService.generateRecommendedAllocation(transactions, totalIncome);
+    res.json({ allocations, totalIncome });
   } catch (err) { next(err); }
 }

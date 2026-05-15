@@ -39,7 +39,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCategoryList = getCategoryList;
 exports.categorize = categorize;
 exports.extractTransactionsFromPDF = extractTransactionsFromPDF;
-exports.generateRecommendations = generateRecommendations;
+exports.generateRecommendedAllocation = generateRecommendedAllocation;
+exports.generateSpendingAnalysis = generateSpendingAnalysis;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 // @ts-ignore
@@ -69,15 +70,19 @@ const CATEGORIES = {
     fun: { en: 'Entertainment', th: 'บันเทิง', type: 'wants', keywords: ['major', 'sf cinema', 'steam', 'nintendo', 'playstation', 'concert', 'asiatique', 'cinema'] },
     subs: { en: 'Subscriptions', th: 'สมัครสมาชิก', type: 'wants', keywords: ['netflix', 'disney+', 'spotify', 'youtube premium', 'apple tv', 'icloud', 'adobe', 'notion', 'canva'] },
     misc: { en: 'Misc', th: 'อื่นๆ', type: 'wants', keywords: ['atm fee', 'bank charge', 'fee', 'charge', 'misc', 'gift'] },
-    income: { en: 'Income', th: 'รายได้', type: 'income', keywords: ['deposit', 'เงินเข้า', 'เงินโอนเข้า', 'salary', 'เงินเดือน', 'dividend', 'interest'] },
+    income: { en: 'Income', th: 'รายได้', type: 'income', keywords: ['deposit', 'เงินเข้า', 'เงินโอนเข้า', 'salary', 'เงินเดือน', 'dividend', 'interest', 'กยศ', 'กองทุนให้กู้ยืม', 'education loan'] },
 };
 function getCategoryList() {
     return Object.entries(CATEGORIES).map(([id, c]) => ({ id, ...c }));
 }
 function categorize(merchant, note, type) {
+    const text = `${merchant} ${note ?? ''}`.toLowerCase();
+    // Outgoing transfers are never income regardless of AI-extracted type
+    const outgoingRe = /โอนเงินออก|transfer out|iorswt|morisw|morwsw|nmidsw/;
+    if (outgoingRe.test(text))
+        return { catId: 'misc', type: 'wants' };
     if (type === 'credit')
         return { catId: 'income', type: 'income' };
-    const text = `${merchant} ${note ?? ''}`.toLowerCase();
     for (const [id, cat] of Object.entries(CATEGORIES)) {
         if (cat.keywords.some(kw => text.includes(kw))) {
             return { catId: id, type: cat.type };
@@ -137,7 +142,7 @@ For each transaction provide:
 - balance: the running balance (ยอดเงินคงเหลือ) after this transaction (numeric value)
 - note: original description text
 
-CRITICAL: Look for keywords like "เงินโอนเข้า", "Deposit", "CR" for credit. Look for "จ่าย", "โอนเงินออก", "ถอน", "DR" for debit.
+CRITICAL: Look for keywords like "เงินโอนเข้า", "Deposit", "CR", "Education Loan", "กยศ", "กองทุนให้กู้ยืม" for credit. Look for "จ่าย", "โอนเงินออก", "ถอน", "DR" for debit.
 
 Return ONLY a valid JSON object like: {"transactions": [...]}
 
@@ -154,9 +159,20 @@ ${text.slice(0, 10000)}`;
     }
     return parseTextFallback(text);
 }
-async function generateRecommendations(transactions, incomeSources) {
-    const totalIncome = incomeSources.reduce((s, i) => s + i.amount, 0);
-    const totalExpenses = transactions.reduce((s, t) => s + t.amount, 0);
+const FALLBACK_ALLOCATION = [
+    { id: 'rent', th: 'ที่อยู่อาศัย', en: 'Housing', pct: 15 },
+    { id: 'food', th: 'อาหาร', en: 'Groceries', pct: 10 },
+    { id: 'commute', th: 'การเดินทาง', en: 'Transport', pct: 8 },
+    { id: 'utility', th: 'สาธารณูปโภค', en: 'Utilities', pct: 7 },
+    { id: 'health', th: 'สุขภาพ', en: 'Health', pct: 10 },
+    { id: 'dining', th: 'ร้านอาหาร', en: 'Dining out', pct: 10 },
+    { id: 'shopping', th: 'ช้อปปิ้ง', en: 'Shopping', pct: 8 },
+    { id: 'fun', th: 'บันเทิง', en: 'Entertainment', pct: 5 },
+    { id: 'subs', th: 'สมัครสมาชิก', en: 'Subscriptions', pct: 3 },
+    { id: 'misc', th: 'อื่นๆ', en: 'Misc', pct: 4 },
+    { id: 'savings', th: 'เก็บออม', en: 'Savings', pct: 20 },
+];
+async function generateRecommendedAllocation(transactions, totalIncome) {
     const byCat = {};
     for (const t of transactions) {
         byCat[t.catId] = (byCat[t.catId] ?? 0) + t.amount;
@@ -167,27 +183,106 @@ async function generateRecommendations(transactions, incomeSources) {
     try {
         const prompt = `You are a Thai personal finance advisor.
 Monthly income: ฿${totalIncome.toLocaleString()}
-Monthly expenses: ฿${totalExpenses.toLocaleString()} broken down as ${summary}.
+Current spending: ${summary}
 
-Generate 3-5 specific, actionable saving recommendations.
-Return a JSON object with key "recommendations" containing an array. Each item must have:
-- id: short unique string
-- title: short English title
-- description: 1-2 sentence actionable advice in English
-- potentialSaving: estimated monthly THB saving (number)
-- category: one of the spending categories
-- priority: "high" or "medium" or "low"
+Suggest an optimal monthly budget allocation. Adjust percentages based on the user's actual situation (do not blindly apply 50/30/20 if it does not fit).
 
-Return ONLY: {"recommendations": [...]}`;
+Return a JSON object with key "allocations" containing an array where ALL percentages sum to exactly 100.
+Each item must have:
+- id: one of: rent, food, commute, utility, health, dining, shopping, fun, subs, misc, savings
+- pct: recommended percentage of income (integer)
+- amt: recommended monthly THB amount (integer)
+
+Return ONLY: {"allocations": [...]}`;
         const result = await ollamaJSON(prompt);
-        if (Array.isArray(result?.recommendations) && result.recommendations.length > 0) {
-            return result.recommendations;
+        if (Array.isArray(result?.allocations) && result.allocations.length > 0) {
+            return result.allocations.map(a => {
+                const meta = FALLBACK_ALLOCATION.find(f => f.id === a.id) ?? { th: a.id, en: a.id };
+                return { id: a.id, th: meta.th, en: meta.en, pct: a.pct, amt: a.amt };
+            });
         }
     }
     catch (err) {
-        logger_1.logger.warn(`Ollama recommendations failed, using fallback: ${err?.message}`);
+        logger_1.logger.warn(`Ollama allocation failed, using fallback: ${err?.message}`);
     }
-    return generateFallbackRecommendations(byCat, totalIncome, totalExpenses);
+    return FALLBACK_ALLOCATION.map(f => ({ ...f, amt: Math.round(totalIncome * f.pct / 100) }));
+}
+async function generateSpendingAnalysis(transactions) {
+    if (transactions.length === 0)
+        return 'ไม่มีข้อมูลธุรกรรมในเดือนนี้ กรุณาอัปโหลด statement ก่อน';
+    const totalIncome = transactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+    const totalExpenses = transactions.filter(t => t.type !== 'income').reduce((s, t) => s + t.amount, 0);
+    const byCat = {};
+    for (const t of transactions) {
+        if (t.type !== 'income')
+            byCat[t.catId] = (byCat[t.catId] ?? 0) + t.amount;
+    }
+    const breakdown = Object.entries(byCat)
+        .sort((a, b) => b[1] - a[1])
+        .map(([cat, amt]) => `${cat}: ฿${Math.round(amt).toLocaleString()}`)
+        .join(', ');
+    const savingsAmt = totalIncome - totalExpenses;
+    const savingsRate = totalIncome > 0 ? ((savingsAmt / totalIncome) * 100).toFixed(1) : '0';
+    try {
+        const prompt = `คุณเป็นที่ปรึกษาการเงินส่วนตัว วิเคราะห์การใช้เงินของผู้ใช้และให้คำแนะนำที่เป็นประโยชน์
+
+ข้อมูลเดือนนี้:
+- รายรับ: ฿${totalIncome.toLocaleString()}
+- รายจ่ายรวม: ฿${totalExpenses.toLocaleString()}
+- ออมได้: ฿${Math.round(savingsAmt).toLocaleString()} (${savingsRate}% ของรายรับ)
+- รายละเอียดค่าใช้จ่ายแยกหมวด: ${breakdown}
+
+เขียนบทวิเคราะห์ภาษาไทย 3-5 ประโยค ครอบคลุม:
+1. ภาพรวมการใช้เงินและการออมเดือนนี้
+2. หมวดหมู่ที่ควรระวังและเหตุผล
+3. คำแนะนำที่ทำได้จริงเพื่อปรับปรุงการเงิน
+
+ตอบเป็นข้อความต่อเนื่อง ไม่ต้องมี bullet point หรือหัวข้อ`;
+        const res = await fetch(`${OLLAMA_HOST}/api/generate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: OLLAMA_MODEL, prompt, stream: false }),
+        });
+        if (!res.ok)
+            throw new Error(`Ollama ${res.status}`);
+        const data = await res.json();
+        const text = data.response?.trim();
+        if (text && text.length > 30)
+            return text;
+    }
+    catch (err) {
+        logger_1.logger.warn(`Ollama analysis failed, using fallback: ${err?.message}`);
+    }
+    return generateFallbackAnalysisText(byCat, totalIncome, totalExpenses);
+}
+function generateFallbackAnalysisText(byCat, totalIncome, totalExpenses) {
+    const savingsAmt = totalIncome - totalExpenses;
+    const savingsRate = totalIncome > 0 ? ((savingsAmt / totalIncome) * 100).toFixed(1) : '0';
+    const topEntries = Object.entries(byCat).sort((a, b) => b[1] - a[1]).slice(0, 2);
+    let text = `เดือนนี้มีรายรับ ฿${totalIncome.toLocaleString()} รายจ่ายรวม ฿${Math.round(totalExpenses).toLocaleString()} `;
+    if (savingsAmt > 0) {
+        text += `ออมได้ ฿${Math.round(savingsAmt).toLocaleString()} คิดเป็น ${savingsRate}% ของรายรับ `;
+        if (parseFloat(savingsRate) < 20)
+            text += `ซึ่งยังต่ำกว่าเป้าหมาย 20% ที่แนะนำ `;
+        else
+            text += `อยู่ในเกณฑ์ดี `;
+    }
+    else {
+        text += `รายจ่ายเกินรายรับ ฿${Math.round(Math.abs(savingsAmt)).toLocaleString()} ควรตรวจสอบรายจ่ายที่ไม่จำเป็น `;
+    }
+    if (topEntries.length > 0) {
+        text += `หมวดที่ใช้จ่ายสูงสุดคือ ${topEntries.map(([cat, amt]) => `${cat} (฿${Math.round(amt).toLocaleString()})`).join(' และ ')} `;
+    }
+    if ((byCat.dining ?? 0) > totalIncome * 0.1) {
+        text += `ค่าอาหารนอกบ้านค่อนข้างสูง ลองทำอาหารเองสัปดาห์ละ 3 วันเพื่อลดค่าใช้จ่าย`;
+    }
+    else if ((byCat.subs ?? 0) > 800) {
+        text += `มีค่าสมาชิกรายเดือนหลายรายการ ลองตรวจสอบว่ายังใช้งานอยู่จริงทุกตัวหรือไม่`;
+    }
+    else {
+        text += `แนะนำให้ติดตามรายจ่ายอย่างสม่ำเสมอและตั้งเป้าออมเพิ่มขึ้นเดือนละ 5%`;
+    }
+    return text;
 }
 function parseTextFallback(text) {
     const results = [];
@@ -214,8 +309,8 @@ function parseTextFallback(text) {
         let balance = 0;
         let type = 'debit';
         const textOnLine = trimmed.toLowerCase();
-        const incomeKeywords = ['เงินโอนเข้า', 'deposit', 'เงินฝาก', 'income', 'เงินเข้า', 'เครดิต', 'credit', 'Education Loan', 'เงินโอน'];
-        const expenseKeywords = ['จ่าย', 'ถอน', 'โอนเงินออก', 'withdrawal', 'expense', 'เดบิต', 'debit'];
+        const incomeKeywords = ['เงินโอนเข้า', 'deposit', 'เงินฝาก', 'income', 'เงินเข้า', 'เครดิต', 'credit', 'education', 'กยศ', 'กองทุนให้กู้ยืม'];
+        const expenseKeywords = ['จ่าย', 'ถอน', 'โอนเงินออก', 'transfer out', 'iorswt', 'withdrawal', 'expense', 'เดบิต', 'debit'];
         if (incomeKeywords.some(kw => textOnLine.includes(kw))) {
             type = 'credit';
         }
@@ -267,39 +362,4 @@ function normalizeDateStr(raw) {
     if (year >= 2400)
         year -= 543;
     return `${year}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
-}
-function generateFallbackRecommendations(byCat, totalIncome, totalExpenses) {
-    const recs = [];
-    const savingsGap = totalIncome * 0.2 - (totalIncome - totalExpenses);
-    if ((byCat.dining ?? 0) > totalIncome * 0.1) {
-        recs.push({
-            id: 'reduce-dining',
-            title: 'Reduce food delivery orders',
-            description: `Your dining out spend is ฿${Math.round(byCat.dining ?? 0).toLocaleString()}/month. Cooking at home 3 more days per week could save ฿${Math.round((byCat.dining ?? 0) * 0.25).toLocaleString()}.`,
-            potentialSaving: Math.round((byCat.dining ?? 0) * 0.25),
-            category: 'dining',
-            priority: 'high',
-        });
-    }
-    if ((byCat.subs ?? 0) > 800) {
-        recs.push({
-            id: 'audit-subs',
-            title: 'Audit subscriptions',
-            description: `You're spending ฿${Math.round(byCat.subs ?? 0).toLocaleString()}/month on subscriptions. Cancel unused ones to potentially save ฿${Math.round((byCat.subs ?? 0) * 0.4).toLocaleString()}.`,
-            potentialSaving: Math.round((byCat.subs ?? 0) * 0.4),
-            category: 'subs',
-            priority: 'medium',
-        });
-    }
-    if (savingsGap > 0) {
-        recs.push({
-            id: 'savings-gap',
-            title: 'Close the savings gap',
-            description: `You need to save ฿${Math.round(savingsGap).toLocaleString()} more/month to hit a 20% savings rate. Review wants categories to find cuts.`,
-            potentialSaving: Math.round(savingsGap),
-            category: 'misc',
-            priority: 'high',
-        });
-    }
-    return recs;
 }

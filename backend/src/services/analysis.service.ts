@@ -3,23 +3,27 @@ import { getCategoryList } from './ai.service';
 
 export function getMonthlySummary(userId: string, month: string) {
   const { items: transactions } = db.findTransactionsByUser(userId, { month, limit: 9999 });
-  const incomeSources = db.findIncomeSources(userId);
   const categories = getCategoryList();
 
   const expenses = transactions.filter(t => t.type !== 'income');
   const pdfIncome = transactions.filter(t => t.type === 'income');
 
-  const totalIncome = incomeSources.reduce((s, i) => s + i.amount, 0) + pdfIncome.reduce((s, t) => s + t.amount, 0);
+  const totalIncome = pdfIncome.reduce((s, t) => s + t.amount, 0);
   const totalExpenses = expenses.reduce((s, t) => s + t.amount, 0);
   
   const needsTotal = expenses.filter(t => t.type === 'needs').reduce((s, t) => s + t.amount, 0);
   const wantsTotal = expenses.filter(t => t.type === 'wants').reduce((s, t) => s + t.amount, 0);
   const savingsRate = totalIncome > 0 ? ((totalIncome - totalExpenses) / totalIncome) * 100 : 0;
 
-  // Ending balance: balance of the latest transaction in this month
-  const sortedTxns = [...transactions].sort((a, b) => b.date.localeCompare(a.date) || b.createdAt.localeCompare(a.createdAt));
-  const latestTxn = sortedTxns.find(t => t.balance !== undefined);
-  const endingBalance = latestTxn?.balance ?? 0;
+  // Ending balance: last transaction's balance on the last day of the month
+  // transactions is sorted descending by date; same-day txns keep original (chronological) order
+  const withBalance = transactions.filter(t => t.balance !== undefined);
+  let endingBalance = 0;
+  if (withBalance.length > 0) {
+    const lastDate = withBalance[0].date;
+    const lastDayTxns = withBalance.filter(t => t.date === lastDate);
+    endingBalance = lastDayTxns[lastDayTxns.length - 1].balance ?? 0;
+  }
 
   const byCat: Record<string, { amt: number; txns: number }> = {};
   for (const t of expenses) {

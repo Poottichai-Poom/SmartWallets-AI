@@ -15,7 +15,6 @@ export async function storePDF(
   userId: string,
   originalName: string,
   fileBuffer: Buffer,
-  accessPassword: string,
   month?: string
 ) {
   if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
@@ -28,9 +27,9 @@ export async function storePDF(
   const encryptedPath = path.join(UPLOAD_DIR, fileName);
   fs.writeFileSync(encryptedPath, encrypted);
 
-  const passwordHash = await bcrypt.hash(accessPassword, SALT_ROUNDS);
+  const passwordHash = await bcrypt.hash(uuidv4(), SALT_ROUNDS);
 
-  return db.createPDF({
+  const pdf = db.createPDF({
     userId,
     originalName,
     encryptedPath,
@@ -41,6 +40,12 @@ export async function storePDF(
     status: 'PENDING',
     month,
   });
+
+  const token = uuidv4();
+  const expiresAt = new Date(Date.now() + SESSION_MINUTES * 60 * 1000).toISOString();
+  const session = db.createPDFSession(pdf.id, token, expiresAt);
+
+  return { pdf, sessionToken: session.token, expiresAt };
 }
 
 export async function verifyAndCreateSession(

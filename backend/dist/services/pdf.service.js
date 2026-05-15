@@ -21,7 +21,7 @@ const audit_service_1 = require("./audit.service");
 const UPLOAD_DIR = path_1.default.resolve(process.env.UPLOAD_DIR ?? './uploads');
 const SESSION_MINUTES = parseInt(process.env.PDF_ACCESS_SESSION_MINUTES ?? '30', 10);
 const SALT_ROUNDS = 12;
-async function storePDF(userId, originalName, fileBuffer, accessPassword, month) {
+async function storePDF(userId, originalName, fileBuffer, month) {
     if (!fs_1.default.existsSync(UPLOAD_DIR))
         fs_1.default.mkdirSync(UPLOAD_DIR, { recursive: true });
     const fileKey = (0, encryption_service_1.generateFileKey)();
@@ -30,8 +30,8 @@ async function storePDF(userId, originalName, fileBuffer, accessPassword, month)
     const fileName = `${(0, uuid_1.v4)()}.enc`;
     const encryptedPath = path_1.default.join(UPLOAD_DIR, fileName);
     fs_1.default.writeFileSync(encryptedPath, encrypted);
-    const passwordHash = await bcryptjs_1.default.hash(accessPassword, SALT_ROUNDS);
-    return store_1.db.createPDF({
+    const passwordHash = await bcryptjs_1.default.hash((0, uuid_1.v4)(), SALT_ROUNDS);
+    const pdf = store_1.db.createPDF({
         userId,
         originalName,
         encryptedPath,
@@ -42,6 +42,10 @@ async function storePDF(userId, originalName, fileBuffer, accessPassword, month)
         status: 'PENDING',
         month,
     });
+    const token = (0, uuid_1.v4)();
+    const expiresAt = new Date(Date.now() + SESSION_MINUTES * 60 * 1000).toISOString();
+    const session = store_1.db.createPDFSession(pdf.id, token, expiresAt);
+    return { pdf, sessionToken: session.token, expiresAt };
 }
 async function verifyAndCreateSession(pdfId, userId, password, req) {
     const pdf = store_1.db.findPDFById(pdfId);

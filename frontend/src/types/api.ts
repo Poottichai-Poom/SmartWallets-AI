@@ -68,6 +68,14 @@ export interface SpendingLeak {
   cat: string;
 }
 
+export interface AllocationItem {
+  id: string;
+  th: string;
+  en: string;
+  pct: number;
+  amt: number;
+}
+
 export interface AIRecommendation {
   id: string;
   title: string;

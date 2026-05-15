@@ -38,6 +38,7 @@ exports.categories = categories;
 exports.daily = daily;
 exports.leaks = leaks;
 exports.recommendations = recommendations;
+exports.recommendedAllocation = recommendedAllocation;
 const analysisService = __importStar(require("../services/analysis.service"));
 const aiService = __importStar(require("../services/ai.service"));
 const store_1 = require("../db/store");
@@ -88,9 +89,20 @@ async function recommendations(req, res, next) {
     try {
         const month = req.query.month ?? currentMonth();
         const { items: transactions } = store_1.db.findTransactionsByUser(req.user.id, { month, limit: 9999 });
-        const incomeSources = store_1.db.findIncomeSources(req.user.id);
-        const recs = await aiService.generateRecommendations(transactions, incomeSources);
-        res.json({ recommendations: recs });
+        const analysis = await aiService.generateSpendingAnalysis(transactions);
+        res.json({ analysis });
+    }
+    catch (err) {
+        next(err);
+    }
+}
+async function recommendedAllocation(req, res, next) {
+    try {
+        const month = req.query.month ?? currentMonth();
+        const { items: transactions } = store_1.db.findTransactionsByUser(req.user.id, { month, limit: 9999 });
+        const totalIncome = transactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+        const allocations = await aiService.generateRecommendedAllocation(transactions, totalIncome);
+        res.json({ allocations, totalIncome });
     }
     catch (err) {
         next(err);

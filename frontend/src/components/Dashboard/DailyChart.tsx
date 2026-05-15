@@ -17,15 +17,15 @@ export default function DailyChart({ daily, month }: Props) {
         </div>
         <div className="text-xs text-3">฿/day</div>
       </div>
-      <ResponsiveContainer width="100%" height={200}>
+      <ResponsiveContainer width="100%" height={220}>
         <BarChart data={data} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
           <XAxis
             dataKey="day"
-            tick={{ fill: 'var(--text-3)', fontSize: 10 }}
+            tick={{ fill: 'var(--text-3)', fontSize: 9 }}
             tickLine={false}
             axisLine={false}
-            interval={4}
+            interval={0}
           />
           <YAxis tick={{ fill: 'var(--text-3)', fontSize: 10 }} tickLine={false} axisLine={false} />
           <Tooltip
