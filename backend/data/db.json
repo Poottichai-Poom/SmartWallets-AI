@@ -1,0 +1,2100 @@
+{
+  "users": [
+    {
+      "email": "test@example.com",
+      "passwordHash": "$2b$12$5DijDPSJCRMthyLxCSMlvOW6YMVGmDqGBx8UdabhwM9xKgqIjgDLS",
+      "name": "Test User",
+      "role": "USER",
+      "id": "f15b4540-f586-4a75-aab2-3d129d564c19",
+      "createdAt": "2026-05-14T04:15:14.562Z",
+      "updatedAt": "2026-05-14T04:15:14.562Z"
+    },
+    {
+      "email": "demo@test.com",
+      "passwordHash": "$2b$12$BYGve2X55PpRN/gMDGo3QeOyEoGjWkWenFH9IZNm7sJ2UyseeIfXm",
+      "role": "USER",
+      "id": "73800081-e39e-4cd1-bbc4-3381c29a8f12",
+      "createdAt": "2026-05-14T04:15:29.019Z",
+      "updatedAt": "2026-05-14T04:15:29.019Z"
+    },
+    {
+      "email": "test@smartwallets.ai",
+      "passwordHash": "$2b$12$VEt6bFaSk3bgRCqK2n9qLeXgxgA4N59XcmV/Uj.IsD9Tkk2/9JLG6",
+      "name": "Test User",
+      "role": "USER",
+      "id": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "createdAt": "2026-05-14T04:28:58.411Z",
+      "updatedAt": "2026-05-14T04:28:58.411Z"
+    },
+    {
+      "email": "test_pdf@smartwallet.local",
+      "passwordHash": "$2b$12$AgSuXDCuAASwxB5ohdPcBe352Sf7j2tLfRLoEWdfyMW5MOu9Umgxa",
+      "name": "PDF Tester",
+      "role": "USER",
+      "id": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "createdAt": "2026-05-14T05:15:42.171Z",
+      "updatedAt": "2026-05-14T05:15:42.171Z"
+    }
+  ],
+  "refreshTokens": [
+    {
+      "id": "2f4bdc79-168b-47d9-b4aa-2c7dd7016a20",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczODAwMDgxLWUzOWUtNGNkMS1iYmM0LTMzODFjMjlhOGYxMiIsImlhdCI6MTc3ODczMjEyOSwiZXhwIjoxNzc5MzM2OTI5fQ.C7NuoRLiE4AB_LM4DMXdMOumItN5Ozpla-j_e9R3CdM",
+      "userId": "73800081-e39e-4cd1-bbc4-3381c29a8f12",
+      "expiresAt": "2026-05-21T04:15:29.218Z",
+      "createdAt": "2026-05-14T04:15:29.219Z"
+    },
+    {
+      "id": "c4980914-29a1-4f3c-b5e4-85b3dcd8c842",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMjk0MiwiZXhwIjoxNzc5MzM3NzQyfQ.tO6gAih0tHHNpKRDSb_c2JEL4WcsW32pK-cWTTxWDYw",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:29:02.823Z",
+      "createdAt": "2026-05-14T04:29:02.823Z"
+    },
+    {
+      "id": "db8503e9-d612-4f26-8a4c-f550cd4ca256",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMjk0OSwiZXhwIjoxNzc5MzM3NzQ5fQ.HFOx2OtDS-OOxuPQkNZfovJzMhF_W9bjTZ6MYQaqv2c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:29:09.185Z",
+      "createdAt": "2026-05-14T04:29:09.186Z"
+    },
+    {
+      "id": "1852ea2d-569a-408a-b368-9ea81ae015fe",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMjk1NywiZXhwIjoxNzc5MzM3NzU3fQ.Ie-nU7-9mRxjEtEq8j1DX7sK9lrihAgo9MYHsxPhMRw",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:29:17.148Z",
+      "createdAt": "2026-05-14T04:29:17.148Z"
+    },
+    {
+      "id": "244647c1-49b6-4a36-a680-ad5ea39cc315",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMjk2NCwiZXhwIjoxNzc5MzM3NzY0fQ.fqdn5N8HO_ZnUBBb4Us-7-FeAQ6Fx0Gl39wprrSrifA",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:29:24.399Z",
+      "createdAt": "2026-05-14T04:29:24.399Z"
+    },
+    {
+      "id": "082e9e14-434f-427d-af1a-ba66ee1e3997",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMjk3MywiZXhwIjoxNzc5MzM3NzczfQ.e0-grNXEKhrDLw0ATgKJU_JCJVfJ037mVkfVQhIw1dc",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:29:33.637Z",
+      "createdAt": "2026-05-14T04:29:33.637Z"
+    },
+    {
+      "id": "57dbe552-5546-49d0-8396-040a41cf5e7b",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMzA1NywiZXhwIjoxNzc5MzM3ODU3fQ.Wbfx0ezgOviepbK6auNEcVLJAf0msID4u6PIC1UQMzw",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:30:57.657Z",
+      "createdAt": "2026-05-14T04:30:57.657Z"
+    },
+    {
+      "id": "056dedf8-6228-49b2-82f5-1095940e877f",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMzY5MywiZXhwIjoxNzc5MzM4NDkzfQ.yWI3Uh6adRF1LI0550CPJvQFOkhl8J4l63vWG0zKXPI",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:41:33.524Z",
+      "createdAt": "2026-05-14T04:41:33.524Z"
+    },
+    {
+      "id": "40c4c5c1-32c3-4951-a96d-4bc1eefdb34d",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMzcwMSwiZXhwIjoxNzc5MzM4NTAxfQ.RhizG5fzkuIBoeRfFaEqK3eLagpqQn9_Fu5JIfK4fh4",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:41:41.506Z",
+      "createdAt": "2026-05-14T04:41:41.506Z"
+    },
+    {
+      "id": "c0c5e558-3779-4e8b-8598-b110bff79522",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMzcwNywiZXhwIjoxNzc5MzM4NTA3fQ.Fguj8bnvANsEAykCgawy1Hcwve7v432NIzbimjIKLd0",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:41:47.028Z",
+      "createdAt": "2026-05-14T04:41:47.028Z"
+    },
+    {
+      "id": "efba5c7f-3378-4ef6-8055-1b4d64733764",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMzc3OCwiZXhwIjoxNzc5MzM4NTc4fQ.0qy1FSOjEUOgBeU9-I5d7DnN0qUXX02XyOMRQZXGEKk",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:42:58.022Z",
+      "createdAt": "2026-05-14T04:42:58.022Z"
+    },
+    {
+      "id": "fc53470b-c5ce-4487-83a8-158b9358f5fe",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczMzc4OSwiZXhwIjoxNzc5MzM4NTg5fQ.xeYovIu-2SX7D0_qxGH-B-YVUAz12RTHRzXly0SkqWg",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T04:43:09.154Z",
+      "createdAt": "2026-05-14T04:43:09.154Z"
+    },
+    {
+      "id": "1443e60f-384b-4aeb-9aeb-a4f6ba4d7b6c",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczNDk4MSwiZXhwIjoxNzc5MzM5NzgxfQ.ibe-jOoBV6SykbmiyZwpFVfuwn76vcckdYe4l4lgFsk",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T05:03:01.009Z",
+      "createdAt": "2026-05-14T05:03:01.009Z"
+    },
+    {
+      "id": "5854e6df-f6db-496a-adf4-d45bf72dbb54",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODczNDk5MSwiZXhwIjoxNzc5MzM5NzkxfQ.7jM5QJy_6bYXOWlEhTxxNp-l69SRRlGQTb0yokWF05g",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T05:03:11.098Z",
+      "createdAt": "2026-05-14T05:03:11.098Z"
+    },
+    {
+      "id": "51ab0c84-1c25-40ae-92f6-b06ea7a5d687",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNTc1OSwiZXhwIjoxNzc5MzQwNTU5fQ.jSYbgmSUnw9ieM3Thas0ena1mmx0IEhKB3PrlAX3m6k",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:15:59.682Z",
+      "createdAt": "2026-05-14T05:15:59.682Z"
+    },
+    {
+      "id": "ded55c55-cdb5-41b5-bb9f-0d7cac08c48b",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNTc2NSwiZXhwIjoxNzc5MzQwNTY1fQ.vngjfa4sizEr4bgZi6LvwC1BcCJQJxQlk9wV8Nx7u7o",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:16:05.186Z",
+      "createdAt": "2026-05-14T05:16:05.186Z"
+    },
+    {
+      "id": "c0bd8a82-3b82-4eb9-a392-4f9fb70fade8",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNTc3NCwiZXhwIjoxNzc5MzQwNTc0fQ.hpvcoFIZnXHUQ4jeiORIlEU8ZqRbqv5LcjW8rfzAHCg",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:16:14.735Z",
+      "createdAt": "2026-05-14T05:16:14.735Z"
+    },
+    {
+      "id": "8ab1eec1-b5c2-4ffb-836a-9e77090ef174",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNTg5NSwiZXhwIjoxNzc5MzQwNjk1fQ.s9zRvhlE4Jgl0PCjFF7Vq3zqNp1vrfmkqhNk5orpduQ",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:18:15.369Z",
+      "createdAt": "2026-05-14T05:18:15.369Z"
+    },
+    {
+      "id": "6d369b98-eb30-477b-b19b-74da6e9b4d8e",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNTkxNywiZXhwIjoxNzc5MzQwNzE3fQ.BsGJIACOQOg83Tsaek9GAIDkKVrDa7Yu3Y9ITOOZ8UI",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:18:37.804Z",
+      "createdAt": "2026-05-14T05:18:37.804Z"
+    },
+    {
+      "id": "7b31978c-c6fe-4e42-8e9f-ab9cc347053b",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNTk1NSwiZXhwIjoxNzc5MzQwNzU1fQ.vsPlh9MqfCoLWoPudRp34mokcBIHfBUwV1L8G5X60A0",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:19:15.547Z",
+      "createdAt": "2026-05-14T05:19:15.547Z"
+    },
+    {
+      "id": "0a919c82-fbde-4958-916f-00c71d21e91c",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNTk3NiwiZXhwIjoxNzc5MzQwNzc2fQ.4VNUxOc1dwn3mIUWn3mr_8HKSnibO6TssxH2Rc24tU4",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:19:36.436Z",
+      "createdAt": "2026-05-14T05:19:36.436Z"
+    },
+    {
+      "id": "7de06cbe-cdc2-41fc-a5b7-3061ac7e1337",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNTk4NSwiZXhwIjoxNzc5MzQwNzg1fQ.2S1MMsR8bQ848YCYgXoFlz3WX0tl9R-2kRH69UY1KTg",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:19:45.038Z",
+      "createdAt": "2026-05-14T05:19:45.038Z"
+    },
+    {
+      "id": "56909f50-086a-48c3-9b37-15f30de744dc",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNjAxMSwiZXhwIjoxNzc5MzQwODExfQ.ju6HCYSUPXn-4XVHybKizlmxNdHXtoI3AfVFSZuQNfQ",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:20:11.243Z",
+      "createdAt": "2026-05-14T05:20:11.243Z"
+    },
+    {
+      "id": "c93c8303-c957-4f79-afe0-7d56727844c5",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNjAzMiwiZXhwIjoxNzc5MzQwODMyfQ.UzqD0MVZVFufKKQfl9PWEEe9UlmaHk2LFAC65FfZs-4",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:20:32.906Z",
+      "createdAt": "2026-05-14T05:20:32.906Z"
+    },
+    {
+      "id": "c2a18b70-8940-4c32-a30f-1026c6adfee4",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjA2YjQ3LWJiMTMtNDZiMC1iZjY5LTRmNzMyMDU5YTAwZSIsImlhdCI6MTc3ODczNjM0NSwiZXhwIjoxNzc5MzQxMTQ1fQ.BQpPaJCIg9x_DOGwZuCa1asgW6iaujxRNKJDhnSj7NU",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "expiresAt": "2026-05-21T05:25:45.153Z",
+      "createdAt": "2026-05-14T05:25:45.153Z"
+    },
+    {
+      "id": "0f7905a2-1ddd-46ee-b473-09374a3d1efd",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODc0NjM1NywiZXhwIjoxNzc5MzUxMTU3fQ.BySrdkC8616eE2PZDM3V5z9o-LPY6oAjGWJTnucIKLU",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T08:12:37.452Z",
+      "createdAt": "2026-05-14T08:12:37.453Z"
+    },
+    {
+      "id": "1d843dbf-8cbd-4dff-9255-002a9325563e",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODc0ODAxOCwiZXhwIjoxNzc5MzUyODE4fQ.y3h5lLqWIrgInQ6tR0JAPS_ACHumebcPSZ6fbkxWqbw",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T08:40:18.632Z",
+      "createdAt": "2026-05-14T08:40:18.632Z"
+    },
+    {
+      "id": "6fe83412-b956-4092-aaad-71b36cf11d68",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODc1ODA2MiwiZXhwIjoxNzc5MzYyODYyfQ.8OEqEpAI1siefnd5HtAVXF2LOLdAJ2nGYPh02u-enhc",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T11:27:42.344Z",
+      "createdAt": "2026-05-14T11:27:42.345Z"
+    },
+    {
+      "id": "5012d491-f771-411c-a901-ceeaccd47619",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODc1ODA3NSwiZXhwIjoxNzc5MzYyODc1fQ.H9DckIc0z_jgv3EAWCrlYa7oGuDv2bqmfBBUitbABzk",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T11:27:55.089Z",
+      "createdAt": "2026-05-14T11:27:55.089Z"
+    },
+    {
+      "id": "23ef3dd6-400f-4152-b0bd-7af501b8385a",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODc2MDE1NiwiZXhwIjoxNzc5MzY0OTU2fQ.TkMlQEQ93TrYoH6Kl3pTIjCr51FG39dOG4FCvgZ7JVQ",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-21T12:02:36.465Z",
+      "createdAt": "2026-05-14T12:02:36.465Z"
+    },
+    {
+      "id": "35f030fd-537b-43af-b239-ec76398e1006",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODgzMDgwNCwiZXhwIjoxNzc5NDM1NjA0fQ.kIY0tmS_On0ftG9Qzqj5VJvy9S37tP-HbsfR7UdTsOQ",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T07:40:04.701Z",
+      "createdAt": "2026-05-15T07:40:04.701Z"
+    },
+    {
+      "id": "718d5e13-3ec3-4014-a5cd-1aa22b2f5dc5",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODgzMDgxMiwiZXhwIjoxNzc5NDM1NjEyfQ.8S5pBOv2khGxtfLMquKXLW9EgXbtzGvyGB37MZoysQc",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T07:40:12.676Z",
+      "createdAt": "2026-05-15T07:40:12.676Z"
+    },
+    {
+      "id": "7d894bdf-2c98-48b5-9735-61d35b7e4b91",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODgzMjEzMiwiZXhwIjoxNzc5NDM2OTMyfQ.IzawL3EixNBGppLtBrSQvv9eHAJzWF1GKacoEM5Djko",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T08:02:12.286Z",
+      "createdAt": "2026-05-15T08:02:12.286Z"
+    },
+    {
+      "id": "1a500c47-f732-4735-98f3-0966b2544318",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODgzMzgwOSwiZXhwIjoxNzc5NDM4NjA5fQ.opk6v7xLI-LSos87y3sSDwQtF2JM_Ym99IHKFf_2LlQ",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T08:30:09.444Z",
+      "createdAt": "2026-05-15T08:30:09.444Z"
+    },
+    {
+      "id": "51906eb8-e13e-4f7f-bab9-0a58ab8c50a6",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODgzNDk1OCwiZXhwIjoxNzc5NDM5NzU4fQ.P6cExd_2YIeu32YBeyU3h5x9i2N7XFaxnDwuq-NmtFI",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T08:49:18.203Z",
+      "createdAt": "2026-05-15T08:49:18.204Z"
+    },
+    {
+      "id": "97c6221f-0d7a-4d0c-9d53-e0b9ad34fe19",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODgzNzA1MywiZXhwIjoxNzc5NDQxODUzfQ.BKt0UPjlpC1YXK-tLNPwT6Kdc4eo5474-0KYSCnDWGM",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T09:24:13.407Z",
+      "createdAt": "2026-05-15T09:24:13.407Z"
+    },
+    {
+      "id": "fd91fa0b-9d59-4c9f-8ebb-952a50175d48",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODgzODA4OCwiZXhwIjoxNzc5NDQyODg4fQ.H0ftiaiiJBSCEjMZUfaZHOGEIxx5ID4ucAyujK6xo6E",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T09:41:28.380Z",
+      "createdAt": "2026-05-15T09:41:28.380Z"
+    },
+    {
+      "id": "44f5f189-be64-48cd-afc8-9c8d115684d8",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODgzOTA3NCwiZXhwIjoxNzc5NDQzODc0fQ.eBDqg8l-uoDFDuvPB4Lgth_LLb76qC2BrWV_-NmVkc0",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T09:57:54.894Z",
+      "createdAt": "2026-05-15T09:57:54.894Z"
+    },
+    {
+      "id": "df722104-b6be-44f8-a58a-30ce31945825",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0MDAyOCwiZXhwIjoxNzc5NDQ0ODI4fQ.D2W41lpClOY5wyptveCzngtnzMNUmbFJu5tyvPN7ps0",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T10:13:48.577Z",
+      "createdAt": "2026-05-15T10:13:48.578Z"
+    },
+    {
+      "id": "58a4ab45-9992-4798-9fa0-7c5e0733091a",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0MDk1NiwiZXhwIjoxNzc5NDQ1NzU2fQ.Ye81f2RvFtdubPx58GlSj33ktlwuIG1nsxHTNg5kn7c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T10:29:16.136Z",
+      "createdAt": "2026-05-15T10:29:16.136Z"
+    },
+    {
+      "id": "dd03e1f3-9833-4db0-a04f-65ea4a698fa0",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0MzAyNCwiZXhwIjoxNzc5NDQ3ODI0fQ.iKLiktvz36YKMSjynlEJ9_0jtz7rl9B4GOydd4CSxek",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T11:03:44.690Z",
+      "createdAt": "2026-05-15T11:03:44.690Z"
+    },
+    {
+      "id": "6e1ed97d-3909-490d-b441-4f7a4e5b3beb",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0NDE3MSwiZXhwIjoxNzc5NDQ4OTcxfQ.Kw0K3hT1-jhtDK05Ev_MVCABiUJTOTiAZyxXAJS9XmQ",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T11:22:51.651Z",
+      "createdAt": "2026-05-15T11:22:51.651Z"
+    },
+    {
+      "id": "d653e7ba-3d9b-457b-bd40-48dc9431a354",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0NTA4NiwiZXhwIjoxNzc5NDQ5ODg2fQ.c2xxywIQTzp1CcpVcqc_I9_agsuXDpPxsX4l4iFxWgM",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T11:38:06.520Z",
+      "createdAt": "2026-05-15T11:38:06.520Z"
+    },
+    {
+      "id": "66a7a59f-2e0c-467e-b747-814ff97c75ec",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0NzE1OCwiZXhwIjoxNzc5NDUxOTU4fQ.XFz4pu6_jXJEnefQlJHQ0zNW-E44BDxRnZDJvlFCY54",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T12:12:38.668Z",
+      "createdAt": "2026-05-15T12:12:38.668Z"
+    },
+    {
+      "id": "60ec5961-34d4-4d5f-a1db-25aae61e519e",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0ODA3NSwiZXhwIjoxNzc5NDUyODc1fQ.APub6UgHOWDac2p27R0EQgOKABvt1IPAyoseQh9ihNA",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T12:27:55.039Z",
+      "createdAt": "2026-05-15T12:27:55.039Z"
+    },
+    {
+      "id": "2a98585a-7e8a-452b-9757-783289171108",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0OTA0MiwiZXhwIjoxNzc5NDUzODQyfQ.FnQrR_22Y97wI-W6fpGUMA44Eac16wUKfl7IB0WH7k0",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T12:44:02.245Z",
+      "createdAt": "2026-05-15T12:44:02.245Z"
+    },
+    {
+      "id": "67906700-9569-4a31-a5bf-d882fdb2812b",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMTI2YTUwLTBlMDctNDM0Ny1iNmFjLTJmNjUxN2UwOGNmOSIsImlhdCI6MTc3ODg0OTA1NCwiZXhwIjoxNzc5NDUzODU0fQ.dw3egBdD7ttu_No7KYTi1yMmKX5cfgl8GYv3uwwI1wM",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "expiresAt": "2026-05-22T12:44:14.518Z",
+      "createdAt": "2026-05-15T12:44:14.518Z"
+    }
+  ],
+  "pdfStatements": [
+    {
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "originalName": "Statement_APR2026_ec4a3301-7d5a-4016-b829-31d28b700a49.pdf",
+      "encryptedPath": "/Users/mac/Poottichai/672110152/SmartWallets-AI/backend/uploads/920e7a3c-a615-4c21-a5e5-1577d00a8016.enc",
+      "encryptedKey": "{\"enc\":\"a852c5f3fa3d8c17383a56305259345a0a08fab3b25e8dc63d2dce773bc9d11d\",\"iv\":\"486bad3850c9a5897c68378b\",\"tag\":\"b18509d3d136e41cf4f18083292a5ddb\"}",
+      "iv": "85f33dad218dd6947d46ffa1",
+      "authTag": "a20a19d617d6cfd1e947ea831119f558",
+      "passwordHash": "$2b$12$o.M/WfO7NsKm0ZZVZB3Q7uVeH7nUozJmLTPVEogK.jIAJCLsQpCXm",
+      "status": "FAILED",
+      "month": "2026-04",
+      "id": "42d9e2fa-9efe-408b-9552-72516d5fe67d",
+      "createdAt": "2026-05-14T05:25:45.354Z",
+      "updatedAt": "2026-05-14T05:25:45.579Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "originalName": "Statement_APR2026_ec4a3301-7d5a-4016-b829-31d28b700a49.pdf",
+      "encryptedPath": "/Users/mac/Poottichai/672110152/SmartWallets-AI/backend/uploads/ab5bc51e-6f70-4846-a238-51ded49aed1d.enc",
+      "encryptedKey": "{\"enc\":\"d6eae131cf1da0096b9fe1b70655cb4f81ce71b3e354a2b18de84c7a77017c43\",\"iv\":\"9db0ddfc542ab96558fab671\",\"tag\":\"f43f76fc921f0837080c983b5fe5dc6f\"}",
+      "iv": "22913fe5aa42ff7fd0cf5045",
+      "authTag": "4ff14f4811e68c2717b03b6329696d69",
+      "passwordHash": "$2b$12$Q27BWhw30buCh6NzHAJkl.HmH0.ShaPs0mBbE3ygajE5GMvbcVdE2",
+      "status": "COMPLETED",
+      "month": "2026-05",
+      "id": "87e148d1-299f-4fc1-9e69-64d4ec9a4585",
+      "createdAt": "2026-05-15T07:41:42.772Z",
+      "updatedAt": "2026-05-15T07:41:42.896Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "originalName": "Statement_APR2026_ec4a3301-7d5a-4016-b829-31d28b700a49.pdf",
+      "encryptedPath": "/Users/mac/Poottichai/672110152/SmartWallets-AI/backend/uploads/14c8eefb-c68b-49fe-9b48-3adb761e651e.enc",
+      "encryptedKey": "{\"enc\":\"2a2ccbe6db8c5f7c2b1799a3990619e198264cb68a8eb0fa917b694f61b56804\",\"iv\":\"100625fe98280c6997366b2e\",\"tag\":\"06c0165f05e3445ac79c489662b80e13\"}",
+      "iv": "005c567202f51b19b3f43a3e",
+      "authTag": "509863047d5de0e692dffd09d43f65dd",
+      "passwordHash": "$2b$12$puES9jm9SWyT5pClMzdSguTaJHgwV/D5F1l6hiDiE.pDNLEUn9LoK",
+      "status": "COMPLETED",
+      "month": "2026-04",
+      "id": "fe1896a0-4fd5-4da6-b3c8-3428db0e680c",
+      "createdAt": "2026-05-15T07:48:46.679Z",
+      "updatedAt": "2026-05-15T07:48:46.805Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "originalName": "à¸¡à¸µà¸à¸²à¸à¸¡.pdf",
+      "encryptedPath": "/Users/mac/Poottichai/672110152/SmartWallets-AI/backend/uploads/fe5ac715-0698-4c5f-913c-eaf54da48cf1.enc",
+      "encryptedKey": "{\"enc\":\"3d0b991d6d3996be03e2f4b35fc6d11244c10647504942b21fa7f80d1fd90528\",\"iv\":\"b41c48cab1f94986a068b7e7\",\"tag\":\"6196a517616bc3aeba27a9153fe2596f\"}",
+      "iv": "fe8fec2e9a43c9071c91fe2b",
+      "authTag": "5fa61e682ef01352e6d1d4eeba706611",
+      "passwordHash": "$2b$12$0hbNQxB4jjvy89CPyjdpP.GTCe265wSXCLVamOoEcxFWO6s93tTju",
+      "status": "COMPLETED",
+      "month": "2026-03",
+      "id": "b60f27dc-2738-46e1-920b-48329644be42",
+      "createdAt": "2026-05-15T07:54:41.131Z",
+      "updatedAt": "2026-05-15T07:54:41.205Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "originalName": "Statement_FEB2026_f3c6036b-f0a9-4d3a-a247-637c6d5dd21b.pdf",
+      "encryptedPath": "/Users/mac/Poottichai/672110152/SmartWallets-AI/backend/uploads/ff7e2f55-a0f4-428e-a62a-dbdbf15b45a4.enc",
+      "encryptedKey": "{\"enc\":\"eae010711c10222000ab9c81b3c2a0b1bf970fca5eb780d9469667a83d2b5aed\",\"iv\":\"eb23ab676b286c1c41b00a76\",\"tag\":\"87da7927a330ce73d9909f44cb3206f8\"}",
+      "iv": "181efdb386b4f6eb32983cb1",
+      "authTag": "6c715adb3a257a5c25acd98315008def",
+      "passwordHash": "$2b$12$uAVHPhcnGsYknT3yyOk1yOi28zVWDzxC98f/zLMdaifOVQIFIV5ey",
+      "status": "COMPLETED",
+      "month": "2026-02",
+      "id": "2abf998c-d779-4ba3-afec-a4dcc19196b0",
+      "createdAt": "2026-05-15T12:17:26.751Z",
+      "updatedAt": "2026-05-15T12:19:59.854Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "originalName": "Statement_JAN2026_07d86e80-823f-42d5-831f-e67aea10afb6.pdf",
+      "encryptedPath": "/Users/mac/Poottichai/672110152/SmartWallets-AI/backend/uploads/581a8762-e924-4081-8980-a0f3fffcc758.enc",
+      "encryptedKey": "{\"enc\":\"14648403a958eecfa86368ee9c69a2290f1e060963d36325e9f12defe9781474\",\"iv\":\"6832339d16ae5643decbe6d7\",\"tag\":\"a1df05638a1f505df18c2e471c8b47b7\"}",
+      "iv": "7380235604425c6350ea67d6",
+      "authTag": "9d19fff4443d9f89f51d2fa8415d1d35",
+      "passwordHash": "$2b$12$H.dfAeBnab7YX743WLEsWOCtOm34/v2YfVaZ/eJQtO7rmDzCGfqeK",
+      "status": "COMPLETED",
+      "month": "2026-01",
+      "id": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "createdAt": "2026-05-15T12:42:55.063Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    }
+  ],
+  "pdfAccessSessions": [
+    {
+      "id": "164582dd-2368-458e-a942-2cf115d3ec28",
+      "pdfId": "777f2af4-7a40-430e-8580-77f7d018d504",
+      "token": "193995b3-539c-497f-9091-2b58c716f782",
+      "expiresAt": "2026-05-15T12:30:01.975Z",
+      "createdAt": "2026-05-15T12:00:01.975Z"
+    },
+    {
+      "id": "faadcfdd-e23a-434f-8773-51c96d4b27de",
+      "pdfId": "219c09db-b15f-4171-8dc5-2d00956e392a",
+      "token": "e78e92bb-6e2c-41ee-9dfe-faa2f55c0a63",
+      "expiresAt": "2026-05-15T12:31:55.248Z",
+      "createdAt": "2026-05-15T12:01:55.248Z"
+    },
+    {
+      "id": "8dabf98b-c50d-4890-9922-06abb731b3ed",
+      "pdfId": "fe7a89b4-fda6-43d4-98da-bbd825e90a93",
+      "token": "75ef93ef-4a85-4a98-ba55-af0551eeeeb0",
+      "expiresAt": "2026-05-15T12:35:06.697Z",
+      "createdAt": "2026-05-15T12:05:06.697Z"
+    },
+    {
+      "id": "922d158e-b393-4777-8272-fdfd857e40ad",
+      "pdfId": "2477ed46-0622-4021-b0ac-2432382399a7",
+      "token": "5b319115-183f-4f2a-a2cf-22ca50071ef5",
+      "expiresAt": "2026-05-15T12:37:14.496Z",
+      "createdAt": "2026-05-15T12:07:14.496Z"
+    },
+    {
+      "id": "d080b42b-b0bf-45a1-b8b2-06f392718e10",
+      "pdfId": "a34d3b9c-3d67-49e2-972a-e42c7992697d",
+      "token": "de497d37-5369-41cf-8a45-e0fde36e0b02",
+      "expiresAt": "2026-05-15T12:43:38.200Z",
+      "createdAt": "2026-05-15T12:13:38.200Z"
+    },
+    {
+      "id": "084c367d-cb9a-42d4-a758-588598fc26bd",
+      "pdfId": "2abf998c-d779-4ba3-afec-a4dcc19196b0",
+      "token": "c81ce5f8-42be-4fbd-a85d-87309cdbcd0b",
+      "expiresAt": "2026-05-15T12:47:26.755Z",
+      "createdAt": "2026-05-15T12:17:26.755Z"
+    },
+    {
+      "id": "c2e05384-d3e0-457f-a858-3a23be95946b",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "token": "60ce5ac3-e105-4cf0-aae2-81a06fa75af9",
+      "expiresAt": "2026-05-15T13:12:55.063Z",
+      "createdAt": "2026-05-15T12:42:55.063Z"
+    }
+  ],
+  "transactions": [
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-02",
+      "merchant": "MORPSW",
+      "amount": 185,
+      "balance": 3981.68,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (MORPSW) 004-BILLERID",
+      "manual": false,
+      "id": "a5d2e481-9c6e-4622-b9b6-a37458a17e18",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-03",
+      "merchant": "CGSWP",
+      "amount": 31.9,
+      "balance": 3949.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (CGSWP) 1020-0633180262",
+      "manual": false,
+      "id": "05c74225-85df-49ad-9c42-645ce35da13c",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-04",
+      "merchant": "IORSWT",
+      "amount": 2000,
+      "balance": 1949.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "โอนเงินออก (IORSWT) 014-4300868673",
+      "manual": false,
+      "id": "1143079c-114f-4209-bed7-e323ad7244c4",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-04",
+      "merchant": "MORPSW",
+      "amount": 54,
+      "balance": 1895.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (MORPSW) 004-BILLERID",
+      "manual": false,
+      "id": "e6938b6e-c163-4e57-9b7b-91dcc29360a6",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-04",
+      "merchant": "CGSWP",
+      "amount": 56,
+      "balance": 1839.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (CGSWP) 1020-0633180262",
+      "manual": false,
+      "id": "005cc25c-0891-48f7-b282-78bc538d700f",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-06",
+      "merchant": "IORSWT",
+      "amount": 1500,
+      "balance": 339.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "โอนเงินออก (IORSWT) 014-4300868673",
+      "manual": false,
+      "id": "415a33db-7633-486a-880f-e61cbc31a590",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-06",
+      "merchant": "MORPSW",
+      "amount": 190,
+      "balance": 149.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (MORPSW) 002-BILLERID",
+      "manual": false,
+      "id": "ce1d223d-7f1d-4ce0-8f8a-42b207713d39",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-06",
+      "merchant": "CGSWP",
+      "amount": 53,
+      "balance": 96.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (CGSWP) 1020-0633180262",
+      "manual": false,
+      "id": "720a8f71-b10a-43b3-aaff-4d9cfbded97e",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-07",
+      "merchant": "IORSDT",
+      "amount": 1000,
+      "balance": 1096.78,
+      "catId": "income",
+      "type": "income",
+      "note": "เงินโอนเข้า (IORSDT) 014-4300868673 ~ Future Amount: 1000",
+      "manual": false,
+      "id": "12827cf4-4ae3-4018-8a78-09a2dabd4f9e",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-07",
+      "merchant": "CGSWP",
+      "amount": 30,
+      "balance": 1066.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (CGSWP) 1020-0633180262",
+      "manual": false,
+      "id": "dbcff79d-f33e-43f3-a9b0-660b9d20e7fe",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-10",
+      "merchant": "MORPSW",
+      "amount": 189,
+      "balance": 877.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (MORPSW) 004-BILLERID",
+      "manual": false,
+      "id": "f41aff11-5e9b-448a-9769-e394926addae",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-10",
+      "merchant": "Kyrs",
+      "amount": 3000,
+      "balance": 3877.78,
+      "catId": "income",
+      "type": "income",
+      "note": "Education Loan (BSD24) กยศ./กองทุนให้กู้ยืมเพื่อการศึกษา/1",
+      "manual": false,
+      "id": "19bd266c-6394-48cf-ac3f-bcdeee5b95d9",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-10",
+      "merchant": "IORSWT",
+      "amount": 3000,
+      "balance": 877.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "โอนเงินออก (IORSWT) 014-4300868673",
+      "manual": false,
+      "id": "46aa165a-946b-48b0-9dd2-86f0a0035803",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-10",
+      "merchant": "MORPSW",
+      "amount": 149,
+      "balance": 728.78,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (MORPSW) 004-BILLERID",
+      "manual": false,
+      "id": "09619924-c065-43da-b1fa-f014e2231e76",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-11",
+      "merchant": "MORPSW",
+      "amount": 219.25,
+      "balance": 509.53,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (MORPSW) 004-BILLERID",
+      "manual": false,
+      "id": "40d4d305-a95d-4a72-905a-f9a6325dbedc",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-13",
+      "merchant": "IORSWT",
+      "amount": 31,
+      "balance": 478.53,
+      "catId": "misc",
+      "type": "wants",
+      "note": "โอนเงินออก (IORSWT) 004-0831527897",
+      "manual": false,
+      "id": "6cb57b47-dbfa-4b07-9097-d7a6aa86c60a",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-14",
+      "merchant": "NBSWP",
+      "amount": 36,
+      "balance": 442.53,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (NBSWP) 24251-7500601153",
+      "manual": false,
+      "id": "2addfb2b-915e-4319-99de-95d98720d1c7",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-14",
+      "merchant": "MORPSW",
+      "amount": 181,
+      "balance": 261.53,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (MORPSW) 004-BILLERID",
+      "manual": false,
+      "id": "4d3d9f48-fd8e-4ae4-815a-5010b5e593dd",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-14",
+      "merchant": "CGSWP",
+      "amount": 13,
+      "balance": 248.53,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (CGSWP) 1020-0633180262",
+      "manual": false,
+      "id": "0276b9c1-542f-4e4e-bb27-f0970c17d5e5",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-14",
+      "merchant": "MORWSW",
+      "amount": 91,
+      "balance": 157.53,
+      "catId": "misc",
+      "type": "wants",
+      "note": "โอนเงินออก-พร้อมเพย์ (MORWSW) TR To EWALLETID 004999009247346",
+      "manual": false,
+      "id": "bb48fe62-3f57-4990-abc7-f96e28070e94",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-15",
+      "merchant": "NBSWP",
+      "amount": 97,
+      "balance": 60.53,
+      "catId": "misc",
+      "type": "wants",
+      "note": "จ่ายค่าสินค้า/บริการ (NBSWP) 24251-0786775353",
+      "manual": false,
+      "id": "a2f12f52-0fb1-429f-aa14-cc18c86aa53f",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-16",
+      "merchant": "จ่ายค่าสินค้า/บริการ (CGSWP)",
+      "amount": 25,
+      "balance": 1249,
+      "catId": "misc",
+      "type": "wants",
+      "note": "1020-0633180262",
+      "manual": false,
+      "id": "47661ae2-7d63-4e90-adc9-8a2b87e0e4df",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    },
+    {
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "pdfId": "943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "date": "2026-01-21",
+      "merchant": "โอนเงินออก-พร้อมเพย์ (MORISW)",
+      "amount": 15,
+      "balance": 20.53,
+      "catId": "misc",
+      "type": "wants",
+      "note": "TR To MSISDN 0909471022",
+      "manual": false,
+      "id": "0cf7c838-341d-426d-9ad3-ffa9ad9bdfea",
+      "createdAt": "2026-05-15T12:43:59.045Z",
+      "updatedAt": "2026-05-15T12:43:59.045Z"
+    }
+  ],
+  "incomeSources": [
+    {
+      "nameTh": "เงินเดือน",
+      "nameEn": "Salary",
+      "amount": 50000,
+      "type": "salary",
+      "dayOfMonth": 25,
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "e475c00c-75f3-4a79-97a9-74243297a309",
+      "createdAt": "2026-05-14T04:29:17.175Z",
+      "updatedAt": "2026-05-14T04:29:17.175Z"
+    }
+  ],
+  "goals": [],
+  "auditLogs": [
+    {
+      "action": "USER_REGISTERED",
+      "resource": "user:73800081-e39e-4cd1-bbc4-3381c29a8f12",
+      "userId": "73800081-e39e-4cd1-bbc4-3381c29a8f12",
+      "ip": "::1",
+      "id": "00a6e071-a9f0-4acb-a3fa-73358e63133f",
+      "createdAt": "2026-05-14T04:15:29.019Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "26491567-e637-4565-82f9-8046ef841bab",
+      "createdAt": "2026-05-14T04:29:17.148Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "69d531ce-3851-4abc-bf69-88b6b20f3ab9",
+      "createdAt": "2026-05-14T04:41:33.528Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "4086ccbd-019a-4f8d-bdec-18a44142ce5b",
+      "createdAt": "2026-05-14T04:42:58.024Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:07dcd77e-90f5-4ab8-9c5e-4ffbe0b567a4",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "748457e1-8f72-4d93-9c6a-1bb7bb75bebf",
+      "createdAt": "2026-05-14T04:42:58.247Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "4ca80099-d4cd-4760-b998-f1b6037a79f0",
+      "createdAt": "2026-05-14T04:43:09.154Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:07dcd77e-90f5-4ab8-9c5e-4ffbe0b567a4",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "a07617ca-d5d9-42de-b1fb-bf55c96f706b",
+      "createdAt": "2026-05-14T04:43:09.181Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:f104dac8-d3e0-45e3-9ac4-61161c74b294",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "7c2dafa9-b28f-44c6-a244-d4bccd53e01a",
+      "createdAt": "2026-05-14T04:44:33.301Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:f104dac8-d3e0-45e3-9ac4-61161c74b294",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "19343a69-fe6c-48d4-a7a8-ea072f2ea990",
+      "createdAt": "2026-05-14T04:44:33.307Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:86338728-c21f-409e-be16-3a70e55eadff",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "c6194d3d-01fd-4f63-9603-8f6ee343695d",
+      "createdAt": "2026-05-14T04:44:51.510Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:86338728-c21f-409e-be16-3a70e55eadff",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "bcbd9843-1e31-4b81-aacf-3f9e3686247b",
+      "createdAt": "2026-05-14T04:44:51.517Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "9dd0f9fd-1c81-4ca5-ab5c-bb6edb12bd0a",
+      "createdAt": "2026-05-14T04:47:57.191Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:a29a461f-0c24-4d25-83be-2b3f3c1d85b5",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "4f5bcfe2-3576-468e-90a9-c85759379b1d",
+      "createdAt": "2026-05-14T04:48:23.331Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:a29a461f-0c24-4d25-83be-2b3f3c1d85b5",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "0c13a569-01f4-4188-aa7a-71171cce68ff",
+      "createdAt": "2026-05-14T04:48:23.335Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:2af09ca4-53cf-458f-a7f1-9860394223b8",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "14e4ecca-495c-41b1-9657-a1832496a01c",
+      "createdAt": "2026-05-14T04:54:37.723Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:2af09ca4-53cf-458f-a7f1-9860394223b8",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "c3ddd6b8-938f-431c-82cd-bc370782b7f2",
+      "createdAt": "2026-05-14T04:54:37.726Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "7fd6ba02-9694-4ceb-a5a4-9e1868feffae",
+      "createdAt": "2026-05-14T05:03:11.098Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:e86394fe-0dc0-4311-b500-8c5f792adf2f",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "e147f086-643e-4ec1-855f-c4d3877d98c1",
+      "createdAt": "2026-05-14T05:03:35.395Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:e86394fe-0dc0-4311-b500-8c5f792adf2f",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "08fd5306-db54-42ca-a411-11700ab51fa0",
+      "createdAt": "2026-05-14T05:03:35.399Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:fcb560fa-54d9-4e56-a69c-b7888d0c8d4b",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "5f1c0b75-d9a6-471f-8b0c-d1c45278966b",
+      "createdAt": "2026-05-14T05:04:33.018Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:fcb560fa-54d9-4e56-a69c-b7888d0c8d4b",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "bf173a8c-4ea4-4c4b-9ea4-47f10f69c6ea",
+      "createdAt": "2026-05-14T05:04:33.023Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:3cbaa199-74fa-4114-906c-ff17398c0ffb",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "7236e94f-b09c-425f-bd6e-d44376fff820",
+      "createdAt": "2026-05-14T05:07:28.811Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:3cbaa199-74fa-4114-906c-ff17398c0ffb",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "c062308e-61b2-4994-b737-9ccc4f1ecb62",
+      "createdAt": "2026-05-14T05:07:28.815Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:2110b660-0d7c-4dc9-a7c3-35bfa90b5a1e",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "f90da2cb-0995-4786-9409-bc4da553b1d8",
+      "createdAt": "2026-05-14T05:09:53.047Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:2110b660-0d7c-4dc9-a7c3-35bfa90b5a1e",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "590a3a71-4e30-4c5f-9ede-d897a9329bc0",
+      "createdAt": "2026-05-14T05:09:53.053Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:ea025ceb-1058-4f71-ae0f-c38f610ef70d",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "6a569ae2-aca3-4c8e-81b0-3bc41c37faaa",
+      "createdAt": "2026-05-14T05:12:22.417Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:ea025ceb-1058-4f71-ae0f-c38f610ef70d",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "be470bb5-b72f-4324-8c24-796ab402abd8",
+      "createdAt": "2026-05-14T05:12:22.422Z"
+    },
+    {
+      "action": "USER_REGISTERED",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "node",
+      "id": "0cfad4c4-ca77-4453-ad32-43deca469b24",
+      "createdAt": "2026-05-14T05:15:42.171Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "node",
+      "id": "4082f552-24d4-427d-9a9e-ccf349eff198",
+      "createdAt": "2026-05-14T05:15:59.682Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "70ee8da0-1999-4531-94e7-70828b197647",
+      "createdAt": "2026-05-14T05:16:05.186Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "node",
+      "id": "c930c8cb-55f2-4711-84d1-cf11bbaa7ffd",
+      "createdAt": "2026-05-14T05:16:14.735Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:96ce6bc1-8a76-4e33-abed-4c7310aa298e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "node",
+      "id": "174935dc-26b2-49b3-ae69-41293e3fbb4b",
+      "createdAt": "2026-05-14T05:16:15.146Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:96ce6bc1-8a76-4e33-abed-4c7310aa298e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "id": "38d8ae82-eb10-43b1-866b-8a0458e0d55e",
+      "createdAt": "2026-05-14T05:16:15.147Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "node",
+      "id": "32f0db3b-2a89-437b-ad59-790f3936ea72",
+      "createdAt": "2026-05-14T05:18:15.369Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:116c81b5-d4a7-4008-b099-0a8561a8024d",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "node",
+      "id": "b5964af9-a1fe-42b4-a4f7-739f9561e127",
+      "createdAt": "2026-05-14T05:18:15.775Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:116c81b5-d4a7-4008-b099-0a8561a8024d",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "id": "e35a65b3-a0e2-4b37-a38d-7950a70f9f2a",
+      "createdAt": "2026-05-14T05:18:15.776Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "node",
+      "id": "e8025346-e0a2-4669-ad9a-d960d64947bb",
+      "createdAt": "2026-05-14T05:18:37.805Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:3b4dc5e9-e379-4a66-94df-1d96b5635f56",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "node",
+      "id": "c7fcfcff-e3c6-499a-969d-40ea6a01176e",
+      "createdAt": "2026-05-14T05:18:38.207Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:3b4dc5e9-e379-4a66-94df-1d96b5635f56",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "id": "7044a3c4-e838-4efd-8203-54271cd3c984",
+      "createdAt": "2026-05-14T05:18:38.209Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "b1350180-68e7-4d6d-af85-2f9d9f30f41c",
+      "createdAt": "2026-05-14T05:19:15.547Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "70fc8c18-8203-4cd8-a4c8-77192186f49c",
+      "createdAt": "2026-05-14T05:19:36.436Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "134e8488-994f-4c4a-8d30-6dbae04868a9",
+      "createdAt": "2026-05-14T05:19:45.038Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:3b4dc5e9-e379-4a66-94df-1d96b5635f56",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "460bcb03-fa1b-49e3-a2ae-1c71c1d24714",
+      "createdAt": "2026-05-14T05:19:45.243Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:3b4dc5e9-e379-4a66-94df-1d96b5635f56",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "id": "6f8c85bb-aadc-469a-93d6-9fb62c98ab03",
+      "createdAt": "2026-05-14T05:19:45.251Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "4b4edddc-86d1-4f26-ac00-5898a995d1fe",
+      "createdAt": "2026-05-14T05:20:11.243Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:3b4dc5e9-e379-4a66-94df-1d96b5635f56",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "2d3a66e0-0043-44aa-b16a-2a603a16d3ef",
+      "createdAt": "2026-05-14T05:20:11.459Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:3b4dc5e9-e379-4a66-94df-1d96b5635f56",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "id": "8b65a6d3-d10f-4d2b-a493-aa65d7e74901",
+      "createdAt": "2026-05-14T05:20:11.468Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "840f3caa-e122-48e0-8eee-e3dd6759307f",
+      "createdAt": "2026-05-14T05:20:32.906Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:3b4dc5e9-e379-4a66-94df-1d96b5635f56",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "e9a2590a-f7e3-4be5-9558-3e7678518443",
+      "createdAt": "2026-05-14T05:20:33.115Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:3b4dc5e9-e379-4a66-94df-1d96b5635f56",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "id": "7e98d4ff-8d66-4622-9388-98c79d2b7973",
+      "createdAt": "2026-05-14T05:20:33.125Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "7bf71131-c903-4c8c-8f7d-2d9de6464eb6",
+      "createdAt": "2026-05-14T05:25:45.155Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:42d9e2fa-9efe-408b-9552-72516d5fe67d",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "ip": "::1",
+      "userAgent": "curl/8.7.1",
+      "id": "ae77ce76-c367-4848-83d0-c87f0316da35",
+      "createdAt": "2026-05-14T05:25:45.571Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:42d9e2fa-9efe-408b-9552-72516d5fe67d",
+      "userId": "27b06b47-bb13-46b0-bf69-4f732059a00e",
+      "id": "c825d932-9e50-43be-ab4b-e1b190bd7e26",
+      "createdAt": "2026-05-14T05:25:45.578Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:2110b660-0d7c-4dc9-a7c3-35bfa90b5a1e",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "a467bd5b-05b6-4db4-9064-48d5e41cedac",
+      "createdAt": "2026-05-14T07:35:10.932Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "f70e9fb1-d433-4ab7-ab6e-fb184d7314c9",
+      "createdAt": "2026-05-14T07:37:04.653Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:ea025ceb-1058-4f71-ae0f-c38f610ef70d",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "d0040a86-680d-4860-86fd-34d32b92b5f2",
+      "createdAt": "2026-05-14T07:37:26.013Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:705202b0-6891-4dd6-916c-29f3ccd9b3fd",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "0251579c-a706-4407-aa63-daef75a90485",
+      "createdAt": "2026-05-14T07:37:26.423Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:705202b0-6891-4dd6-916c-29f3ccd9b3fd",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "0d92985c-1a7a-4305-9829-83591702fc26",
+      "createdAt": "2026-05-14T07:37:26.428Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:cbe71155-0b29-4457-9d94-2fb9ce655b37",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "8a7aca9d-cab5-4737-9920-85e278e4826f",
+      "createdAt": "2026-05-14T07:41:05.256Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:9345c61d-c59b-49b2-8e5d-c2b5b9969549",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "8464f32c-83ff-4c01-91d8-35fa853fc8b5",
+      "createdAt": "2026-05-14T07:41:05.669Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:9345c61d-c59b-49b2-8e5d-c2b5b9969549",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "02ba9b6b-56f5-4377-98d7-f44bcb6f6e08",
+      "createdAt": "2026-05-14T07:41:05.675Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:705202b0-6891-4dd6-916c-29f3ccd9b3fd",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "49e94d3b-4b27-4937-971c-ca4c705b2426",
+      "createdAt": "2026-05-14T07:52:19.042Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:f9be5c8c-49cc-4b5f-ad44-adfd56d9ea41",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "01d07f41-5aa0-40e6-8d3a-89530d11c182",
+      "createdAt": "2026-05-14T07:52:19.457Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:f9be5c8c-49cc-4b5f-ad44-adfd56d9ea41",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "9fbbc57f-6215-4284-b479-76cce1716731",
+      "createdAt": "2026-05-14T07:52:19.461Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "0f448a66-508c-4e5d-9781-497e8957d8bc",
+      "createdAt": "2026-05-14T08:12:48.320Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:9345c61d-c59b-49b2-8e5d-c2b5b9969549",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "00088148-1c2a-454e-b6be-7fd1d86b2e1e",
+      "createdAt": "2026-05-14T08:14:11.534Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:22d4d9cb-527a-4968-a9c1-9b4dd9645aeb",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "469fad13-f105-4f53-a08d-a99d63f4d5b9",
+      "createdAt": "2026-05-14T08:14:11.957Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:22d4d9cb-527a-4968-a9c1-9b4dd9645aeb",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "34069093-7513-4955-92d5-d4ab7985de4a",
+      "createdAt": "2026-05-14T08:14:11.961Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "0386108e-e4f3-40bc-a122-d12c7377c467",
+      "createdAt": "2026-05-14T08:41:29.455Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:22d4d9cb-527a-4968-a9c1-9b4dd9645aeb",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "ee1a5747-1e8f-44c6-8712-6e987d83db0e",
+      "createdAt": "2026-05-14T08:42:20.184Z"
+    },
+    {
+      "action": "PDF_ACCESS_GRANTED",
+      "resource": "pdf:442b7ccc-4306-4ec4-9210-a983dca4578c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "8fd1715f-a05a-4f91-8656-9910e159c4c9",
+      "createdAt": "2026-05-14T08:42:20.601Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:442b7ccc-4306-4ec4-9210-a983dca4578c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "3a8ada9e-1d5a-4c60-ad9a-041eaed127b5",
+      "createdAt": "2026-05-14T08:42:20.605Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:442b7ccc-4306-4ec4-9210-a983dca4578c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "f295615b-10ad-415f-96ad-353d665ef19c",
+      "createdAt": "2026-05-14T11:22:05.161Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:0b9df543-6065-4cd8-bda1-9216a045c52e",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "564c6f23-f601-405a-bb79-0dc02e64f69a",
+      "createdAt": "2026-05-14T11:22:05.383Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "228ef3c8-9d84-46e6-9f70-225eb0c807e6",
+      "createdAt": "2026-05-14T11:27:55.090Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:0b9df543-6065-4cd8-bda1-9216a045c52e",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "4f9285ac-e3ff-4010-8545-067a977eaf5a",
+      "createdAt": "2026-05-14T11:28:27.570Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:51b26508-a1f2-45e1-b2b1-781c4e199ddd",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "ab4d0cdd-a0c1-457e-b575-a232a926e24f",
+      "createdAt": "2026-05-14T11:28:27.800Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:51b26508-a1f2-45e1-b2b1-781c4e199ddd",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "adf51a8d-6e20-4b53-83a4-b8f00dfddefa",
+      "createdAt": "2026-05-14T11:28:57.844Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:984ece29-d902-4f3b-b0ec-d5b2dfde6a62",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "2218582d-49bb-4d62-87a3-e8feffd53c40",
+      "createdAt": "2026-05-14T11:28:58.080Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "e40dfe84-4b6a-413d-883c-2cec7587f35f",
+      "createdAt": "2026-05-14T11:33:19.967Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:984ece29-d902-4f3b-b0ec-d5b2dfde6a62",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "c7a83642-07c1-4204-8a98-6f9d7e91031a",
+      "createdAt": "2026-05-14T11:33:56.283Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:616be595-764e-4af2-b01f-4dd90b3ae9cc",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "e3d27a8a-8913-440e-b30e-1476d4e7c4e3",
+      "createdAt": "2026-05-14T11:33:56.504Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:616be595-764e-4af2-b01f-4dd90b3ae9cc",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "393b6fcd-d6f3-4368-ba44-ef52b681ef0c",
+      "createdAt": "2026-05-14T11:47:28.116Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:e4428dc6-638a-47da-bb68-1757b191dd2d",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "a3eeca53-9c47-4b38-ae44-a4e272f45dc8",
+      "createdAt": "2026-05-14T11:47:28.348Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "98032ec7-c3e0-441b-be45-a1bede62cda5",
+      "createdAt": "2026-05-15T07:41:15.785Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:f9be5c8c-49cc-4b5f-ad44-adfd56d9ea41",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "581757b5-5db6-4794-86a3-87bd3c55ddad",
+      "createdAt": "2026-05-15T07:41:42.551Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:87e148d1-299f-4fc1-9e69-64d4ec9a4585",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "e776c9bd-c3fe-4546-927a-b6f81081bb91",
+      "createdAt": "2026-05-15T07:41:42.778Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:e4428dc6-638a-47da-bb68-1757b191dd2d",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "8ffbf61c-403d-4348-be45-296ca924d31c",
+      "createdAt": "2026-05-15T07:48:46.456Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:fe1896a0-4fd5-4da6-b3c8-3428db0e680c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "0258f4fc-4f5b-4815-8a31-a9d27ebc24a0",
+      "createdAt": "2026-05-15T07:48:46.688Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:b60f27dc-2738-46e1-920b-48329644be42",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "4668e06d-f8d2-4c27-8ed8-d3d214a59f29",
+      "createdAt": "2026-05-15T07:54:41.138Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "3c5ecd15-a5d8-4d8e-bbbe-fa7f6c597f47",
+      "createdAt": "2026-05-15T08:02:44.621Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "f966eb25-1004-40fe-a0b9-92b5e61fbfff",
+      "createdAt": "2026-05-15T08:30:19.925Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "8b347799-10d2-4e92-9ce9-886f93d008e4",
+      "createdAt": "2026-05-15T09:24:40.265Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "a816e4a3-2ecf-47fc-9674-14be9ea742bb",
+      "createdAt": "2026-05-15T09:41:37.739Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "1967f8ca-9057-4952-9ce5-0a225ccdfc02",
+      "createdAt": "2026-05-15T09:58:17.517Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "bcd48597-9c32-4032-ac6a-92ddedf97051",
+      "createdAt": "2026-05-15T11:03:55.736Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "2eff7c97-d203-48c0-a594-9fca421d0d95",
+      "createdAt": "2026-05-15T11:23:02.152Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:849b7628-9bc7-45d4-a055-dda35505eda6",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "e4dd59c9-be92-4c53-9842-9a2a33496490",
+      "createdAt": "2026-05-15T11:27:49.701Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:849b7628-9bc7-45d4-a055-dda35505eda6",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "6065d3a8-bba4-423a-a2bd-99668f566c85",
+      "createdAt": "2026-05-15T11:28:43.057Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:2ee90533-7f42-4a92-84bb-39a58d684862",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "c824eb56-9a10-4b7b-939e-4697765108d2",
+      "createdAt": "2026-05-15T11:28:43.296Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:2ee90533-7f42-4a92-84bb-39a58d684862",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "99787850-5d90-4035-a4ef-1ca541de7546",
+      "createdAt": "2026-05-15T11:31:41.095Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:b6581e5e-793c-44b9-88b5-eadc8f894f41",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "fe1f0e15-9520-4a86-a68d-9e429dec37d7",
+      "createdAt": "2026-05-15T11:31:41.326Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:b6581e5e-793c-44b9-88b5-eadc8f894f41",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "abf98f19-d860-4363-af31-5f07dfb4c753",
+      "createdAt": "2026-05-15T11:37:06.396Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:c3914968-29d7-4574-9967-e9d5309b720a",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "e65fad68-caf7-4e40-8fac-96adde9f6801",
+      "createdAt": "2026-05-15T11:37:06.626Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "704b4395-32e0-4799-930d-b384501ee7d4",
+      "createdAt": "2026-05-15T11:38:17.431Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:c3914968-29d7-4574-9967-e9d5309b720a",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "80d1e762-964d-4f7b-b9df-92635aadba18",
+      "createdAt": "2026-05-15T11:38:51.835Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:2d7aba3d-bdff-446f-81ba-49bff76264e8",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "2e9808db-76fe-43e7-b1d7-aea594104cba",
+      "createdAt": "2026-05-15T11:38:52.085Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:2d7aba3d-bdff-446f-81ba-49bff76264e8",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "c078ed60-0d9a-4a54-ae5f-536255c62210",
+      "createdAt": "2026-05-15T11:40:48.193Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:c3178bb0-3295-4235-a612-811976357165",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "7c0c24a7-2270-4d39-94c1-d53c064dc275",
+      "createdAt": "2026-05-15T11:40:48.427Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:c3178bb0-3295-4235-a612-811976357165",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "b1fe7082-2853-412c-86fe-57fde4277d5e",
+      "createdAt": "2026-05-15T11:43:47.458Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:c05b4b7b-085d-45be-8b82-274071d26557",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "75504b7c-af27-46f9-9a7a-34d15435e080",
+      "createdAt": "2026-05-15T11:43:47.686Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:c05b4b7b-085d-45be-8b82-274071d26557",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "4b9d2d88-92ce-42b1-824f-3fbf144fed6c",
+      "createdAt": "2026-05-15T11:45:22.743Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:c0a154f5-a0e7-42f4-9d50-58de5060c0bf",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "6dcf7c80-0f36-4079-baa7-f6c2b21b37ef",
+      "createdAt": "2026-05-15T11:45:23.025Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:c0a154f5-a0e7-42f4-9d50-58de5060c0bf",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "9c81b980-bce2-48fa-84ea-f10bce3a5759",
+      "createdAt": "2026-05-15T11:46:10.254Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:be1e4dbc-384e-4163-ab82-c11ab38d07ab",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "4ce990e2-7a61-4b16-a2e9-37d2e5370460",
+      "createdAt": "2026-05-15T11:46:10.482Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:be1e4dbc-384e-4163-ab82-c11ab38d07ab",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "c927b5ae-9397-4dc4-b17d-37718244175f",
+      "createdAt": "2026-05-15T11:48:35.690Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:b87a269d-d301-4447-89de-1f205e327876",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "49e96a6d-1436-45e9-93a2-4aef6fe4d04c",
+      "createdAt": "2026-05-15T11:48:35.921Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:b87a269d-d301-4447-89de-1f205e327876",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "350706e0-3c3f-4f90-9486-525bc7551130",
+      "createdAt": "2026-05-15T11:51:15.638Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:cffece78-4632-4b17-86b1-86e8a47d3c0e",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "d3419b15-1bc9-4bc3-a857-d6751e78179b",
+      "createdAt": "2026-05-15T11:51:15.879Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:cffece78-4632-4b17-86b1-86e8a47d3c0e",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "7b1470f4-8c17-4e6a-9940-1c48cb836e4a",
+      "createdAt": "2026-05-15T11:53:22.028Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:964deb2c-eefa-4f77-9ed3-165b2461661c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "2e5ba024-6179-4acc-ac4b-b01af5ee62e2",
+      "createdAt": "2026-05-15T11:53:22.254Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:964deb2c-eefa-4f77-9ed3-165b2461661c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "f4dffe23-70de-4980-9cb1-323154893a30",
+      "createdAt": "2026-05-15T11:56:20.103Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:be9b931b-3575-4f36-bf0b-8beeb5a16ee8",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "f814712a-8d43-441f-9a49-df76c0197a61",
+      "createdAt": "2026-05-15T11:56:20.382Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:777f2af4-7a40-430e-8580-77f7d018d504",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "7e9c7b56-28e4-4eaa-92b2-a27b7c72efb7",
+      "createdAt": "2026-05-15T12:00:01.982Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:777f2af4-7a40-430e-8580-77f7d018d504",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "5e2c6d00-9d61-4c3b-818c-fdbe6906f630",
+      "createdAt": "2026-05-15T12:01:55.010Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:219c09db-b15f-4171-8dc5-2d00956e392a",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "17d8e3b3-b7d4-458b-963c-9f78fbcbc57a",
+      "createdAt": "2026-05-15T12:01:55.260Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:219c09db-b15f-4171-8dc5-2d00956e392a",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "620ce162-53ad-4a9e-a575-fddb9fce20e7",
+      "createdAt": "2026-05-15T12:05:06.461Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:fe7a89b4-fda6-43d4-98da-bbd825e90a93",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "eeb97c87-140c-4aad-98d0-c1e645554f66",
+      "createdAt": "2026-05-15T12:05:06.707Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:fe7a89b4-fda6-43d4-98da-bbd825e90a93",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "cc287d02-0568-4ac0-aed2-3e8285f7ddc8",
+      "createdAt": "2026-05-15T12:07:14.270Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:2477ed46-0622-4021-b0ac-2432382399a7",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "ad47b0dc-31e0-4654-9062-968d0d329dc4",
+      "createdAt": "2026-05-15T12:07:14.502Z"
+    },
+    {
+      "action": "USER_LOGIN",
+      "resource": "user:4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "b368d7d0-3e4f-4706-bd75-11af322435f1",
+      "createdAt": "2026-05-15T12:12:48.771Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:be9b931b-3575-4f36-bf0b-8beeb5a16ee8",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "b59a471c-f8e0-4d27-a27d-3fd94e0346f7",
+      "createdAt": "2026-05-15T12:13:37.977Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:a34d3b9c-3d67-49e2-972a-e42c7992697d",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "a5a38d94-1601-4600-83c0-a989db872d39",
+      "createdAt": "2026-05-15T12:13:38.206Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:a34d3b9c-3d67-49e2-972a-e42c7992697d",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "ce6c4b3a-671d-4687-bef9-a427dced00ae",
+      "createdAt": "2026-05-15T12:17:26.522Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:2abf998c-d779-4ba3-afec-a4dcc19196b0",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "94f42eeb-f71d-470f-8f79-05cd98d2bf18",
+      "createdAt": "2026-05-15T12:17:26.761Z"
+    },
+    {
+      "action": "PDF_DELETED",
+      "resource": "pdf:2477ed46-0622-4021-b0ac-2432382399a7",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "id": "2fe295a0-5ad4-46fc-8075-5ec28a5fa73e",
+      "createdAt": "2026-05-15T12:42:54.836Z"
+    },
+    {
+      "action": "PDF_DOWNLOADED",
+      "resource": "pdf:943add60-86ce-4efb-9172-6b93fabd4c1d",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "id": "f5674954-077a-4741-aa32-2b99b3c02380",
+      "createdAt": "2026-05-15T12:42:55.073Z"
+    }
+  ],
+  "merchantMappings": [
+    {
+      "id": "2b1ce7df-9be1-4df7-98fd-84bf63c7795c",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "004-billerid",
+      "catId": "food",
+      "type": "needs",
+      "updatedAt": "2026-05-15T09:00:17.700Z"
+    },
+    {
+      "id": "52e9438e-945f-42f0-a253-421b5d58cded",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "022-billerid",
+      "catId": "food",
+      "type": "needs",
+      "updatedAt": "2026-05-15T08:59:22.760Z"
+    },
+    {
+      "id": "8ff2d28d-1b0a-461b-9fb0-e90e371a1c13",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "tr",
+      "catId": "food",
+      "type": "needs",
+      "updatedAt": "2026-05-15T09:05:15.704Z"
+    },
+    {
+      "id": "544fe7e8-88c0-4001-a78d-3945c6cd96c4",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "010753700088205-1715099606613018108",
+      "catId": "food",
+      "type": "needs",
+      "updatedAt": "2026-05-15T09:07:03.393Z"
+    },
+    {
+      "id": "29575210-17f9-4444-b292-fd7732330c56",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "014-4300868673",
+      "catId": "income",
+      "type": "income",
+      "updatedAt": "2026-05-15T09:34:15.452Z"
+    },
+    {
+      "id": "1a93e7eb-96ec-4011-9966-2914f1835835",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "กยศ./กองทุนให้กู้ยืมเพื่อการศึกษา/1",
+      "catId": "income",
+      "type": "income",
+      "updatedAt": "2026-05-15T09:28:02.106Z"
+    },
+    {
+      "id": "6e0aa2c5-df37-4957-ac03-9a11cea2a947",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "nmidsd:tr",
+      "catId": "income",
+      "type": "income",
+      "updatedAt": "2026-05-15T09:44:50.881Z"
+    },
+    {
+      "id": "3d58a2cc-1c3b-4517-99d7-4b0fc9d09f00",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "cgswp:1020-0633180262",
+      "catId": "misc",
+      "type": "wants",
+      "updatedAt": "2026-05-15T10:47:23.486Z"
+    },
+    {
+      "id": "8f9c0d4f-16d8-49d1-9ac5-30b891a79f44",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "morpsw:014-billerid",
+      "catId": "misc",
+      "type": "wants",
+      "updatedAt": "2026-05-15T10:40:29.647Z"
+    },
+    {
+      "id": "7304a2d7-d0cc-4201-a7ae-3cb9bdf574d6",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "nbswp:24251-4330908585",
+      "catId": "misc",
+      "type": "wants",
+      "updatedAt": "2026-05-15T10:40:43.512Z"
+    },
+    {
+      "id": "2f1ea471-1a2c-40e1-aa91-e889039208ed",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "nbswp:dpmt-0993203748",
+      "catId": "misc",
+      "type": "wants",
+      "updatedAt": "2026-05-15T10:40:54.306Z"
+    },
+    {
+      "id": "424d9bf4-ae06-4207-9e84-db95b621ea05",
+      "userId": "4a126a50-0e07-4347-b6ac-2f6517e08cf9",
+      "merchantKey": "morisd:tr",
+      "catId": "income",
+      "type": "income",
+      "updatedAt": "2026-05-15T11:05:45.068Z"
+    }
+  ]
+}
