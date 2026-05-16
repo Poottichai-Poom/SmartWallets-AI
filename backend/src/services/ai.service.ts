@@ -27,6 +27,24 @@ async function ollamaJSON<T>(prompt: string): Promise<T> {
   }
 }
 
+async function ollamaText(prompt: string): Promise<string> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 120_000);
+  try {
+    const res = await fetch(`${OLLAMA_HOST}/api/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: OLLAMA_MODEL, prompt, stream: false }),
+      signal: controller.signal,
+    });
+    if (!res.ok) throw new Error(`Ollama ${res.status}: ${await res.text()}`);
+    const data = await res.json() as { response: string };
+    return data.response ?? '';
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 const CATEGORIES: Record<string, { en: string; th: string; type: 'needs' | 'wants' | 'income'; keywords: string[] }> = {
   rent:     { en: 'Housing',       th: 'ที่อยู่อาศัย', type: 'needs', keywords: ['rent','property','apartment','condo','house','housing'] },
   food:     { en: 'Groceries',     th: 'อาหาร',        type: 'needs', keywords: ['tesco','lotuss','foodland','big c','tops','villa market','7-eleven','cpall','family mart','makro','cj express'] },
@@ -55,19 +73,16 @@ export function categorize(merchant: string, note?: string, type?: 'debit' | 'cr
   if (type === 'credit') return { catId: 'income', type: 'income' };
   for (const [id, cat] of Object.entries(CATEGORIES)) {
     if (cat.keywords.some(kw => text.includes(kw))) {
-      return { catId: id, type: cat.type as any };
+      return { catId: id, type: cat.type };
     }
   }
   return { catId: 'misc', type: 'wants' };
 }
 
 export async function extractTransactionsFromPDF(buffer: Buffer, bankPassword?: string): Promise<ExtractedTransaction[]> {
-  const logFile = path.resolve(__dirname, '../../extraction.log');
-  const log = (msg: string) => fs.appendFileSync(logFile, `[${new Date().toISOString()}] ${msg}\n`);
-  
   let text = '';
   try {
-    log(`Extracting PDF with bankPassword: ${bankPassword ? 'YES' : 'NO'}`);
+    logger.info(`Extracting PDF, bankPassword: ${bankPassword ? 'YES' : 'NO'}`);
     const loadingTask = pdfjs.getDocument({
       data: new Uint8Array(buffer),
       password: bankPassword,
@@ -77,7 +92,7 @@ export async function extractTransactionsFromPDF(buffer: Buffer, bankPassword?: 
     });
 
     const pdf = await loadingTask.promise;
-    log(`PDF loaded successfully, pages: ${pdf.numPages}`);
+    logger.info(`PDF loaded, pages: ${pdf.numPages}`);
     let fullText = '';
 
     for (let i = 1; i <= pdf.numPages; i++) {
@@ -96,12 +111,12 @@ export async function extractTransactionsFromPDF(buffer: Buffer, bankPassword?: 
       fullText += pageText + '\n\n';
     }
     text = fullText;
-    log(`Text extraction complete, length: ${text.length}`);
-    fs.writeFileSync(path.resolve(__dirname, '../../pdf_text_debug.txt'), text, 'utf8');
+    logger.info(`Text extraction complete, length: ${text.length}`);
+    if (process.env.NODE_ENV !== 'production') {
+      fs.writeFileSync(path.resolve(__dirname, '../../pdf_text_debug.txt'), text, 'utf8');
+    }
   } catch (err: any) {
-    log(`PDF extraction error: ${err.message || err.name || JSON.stringify(err)}`);
-    console.error('PDF extraction error details:', err);
-    logger.warn('PDF extraction failed — wrong bank password or unsupported format', { err });
+    logger.warn('PDF extraction failed — wrong bank password or unsupported format', { err: err.message });
     throw new Error('ไม่สามารถอ่าน PDF ได้ — ตรวจสอบรหัสผ่าน PDF จากธนาคาร');
   }
 
@@ -121,11 +136,10 @@ ${chunk}`;
           date: normalizeDateStr(String(t.date)) ?? t.date,
         })).filter(t => /^\d{4}-\d{2}-\d{2}$/.test(t.date));
         allExtracted.push(...normalized);
-        const dates = normalized.map(t => t.date).join(', ');
-        log(`Ollama chunk ${offset}-${offset + CHUNK}: ${normalized.length} txns | dates: ${dates}`);
+        logger.info(`Ollama chunk ${offset}-${offset + CHUNK}: ${normalized.length} txns`);
       }
     } catch (err: any) {
-      log(`Ollama chunk ${offset} failed: ${err?.message}`);
+      logger.warn(`Ollama chunk ${offset} failed: ${err?.message}`);
     }
   }
 
@@ -229,14 +243,7 @@ export async function generateSpendingAnalysis(
 
 ตอบเป็นข้อความต่อเนื่อง ไม่ต้องมี bullet point หรือหัวข้อ`;
 
-    const res = await fetch(`${OLLAMA_HOST}/api/generate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: OLLAMA_MODEL, prompt, stream: false }),
-    });
-    if (!res.ok) throw new Error(`Ollama ${res.status}`);
-    const data = await res.json() as { response: string };
-    const text = data.response?.trim();
+    const text = (await ollamaText(prompt)).trim();
     if (text && text.length > 30) return text;
   } catch (err: any) {
     logger.warn(`Ollama analysis failed, using fallback: ${err?.message}`);
@@ -341,14 +348,7 @@ function normalizeDateStr(raw: string): string | null {
   else { [d, m, y] = parts; }
 
   let year = parseInt(y, 10);
-  
-  // If year is 2 digits (e.g., '69' for 2569 BE)
-  if (y.length === 2) {
-    if (year > 50) year += 2500; // 69 -> 2569
-    else year += 2000; // 24 -> 2024 (unlikely for BE but safe)
-  }
-  
-  // Handle Thai Buddhist Era (BE)
+  if (y.length === 2) year += year > 50 ? 2500 : 2000;
   if (year >= 2400) year -= 543;
 
   return `${year}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;

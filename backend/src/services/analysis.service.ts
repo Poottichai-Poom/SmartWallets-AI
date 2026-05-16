@@ -38,7 +38,7 @@ export function getMonthlySummary(userId: string, month: string) {
       id: cat.id,
       en: cat.en,
       th: cat.th,
-      type: cat.type as any,
+      type: cat.type,
       amt: Math.round(byCat[cat.id]?.amt ?? 0),
       txns: byCat[cat.id]?.txns ?? 0,
       trend: 0,
@@ -86,9 +86,7 @@ export function getDailySpending(userId: string, month: string): number[] {
 export function getSpendingLeaks(userId: string, month: string) {
   const { items: transactions } = db.findTransactionsByUser(userId, { month, limit: 9999 });
   const expenses = transactions.filter(t => t.type !== 'income');
-  
-  const summary = getMonthlySummary(userId, month);
-  const totalIncome = summary.totalIncome;
+  const totalIncome = transactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
   const categories = getCategoryList();
 
   const byCat: Record<string, number> = {};

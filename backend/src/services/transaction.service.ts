@@ -56,13 +56,7 @@ export function updateTransaction(
   if (data.catId && data.type) {
     const key = merchantKey(updated.note, updated.merchant);
     db.upsertMerchantMapping(userId, key, data.catId, data.type);
-    // Sync all other transactions with the same merchant key
-    const { items: all } = db.findTransactionsByUser(userId, { limit: 9999 });
-    for (const t of all) {
-      if (t.id !== id && merchantKey(t.note, t.merchant) === key) {
-        db.updateTransaction(t.id, userId, { catId: data.catId, type: data.type });
-      }
-    }
+    db.syncMerchantCategory(userId, id, key, data.catId, data.type);
   }
   return updated;
 }

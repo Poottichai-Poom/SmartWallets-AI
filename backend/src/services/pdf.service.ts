@@ -11,13 +11,19 @@ const UPLOAD_DIR = path.resolve(process.env.UPLOAD_DIR ?? './uploads');
 const SESSION_MINUTES = parseInt(process.env.PDF_ACCESS_SESSION_MINUTES ?? '30', 10);
 const SALT_ROUNDS = 12;
 
+function decryptPDFRecord(pdf: { encryptedKey: string; encryptedPath: string; iv: string; authTag: string }): Buffer {
+  const fileKey = decryptKeyWithMaster(pdf.encryptedKey);
+  const encryptedData = fs.readFileSync(pdf.encryptedPath);
+  return decryptBuffer(encryptedData, fileKey, pdf.iv, pdf.authTag);
+}
+
 export async function storePDF(
   userId: string,
   originalName: string,
   fileBuffer: Buffer,
   month?: string
 ) {
-  if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
   const fileKey = generateFileKey();
   const { encrypted, iv, authTag } = encryptBuffer(fileBuffer, fileKey);
@@ -95,9 +101,7 @@ export function getDecryptedPDF(
     throw Object.assign(new Error('Access denied'), { status: 403 });
   }
 
-  const fileKey = decryptKeyWithMaster(pdf.encryptedKey);
-  const encryptedData = fs.readFileSync(pdf.encryptedPath);
-  const buffer = decryptBuffer(encryptedData, fileKey, pdf.iv, pdf.authTag);
+  const buffer = decryptPDFRecord(pdf);
 
   logAction('PDF_DOWNLOADED', `pdf:${pdfId}`, { userId, req });
   return { buffer, originalName: pdf.originalName };
@@ -108,9 +112,7 @@ export function getPDFBuffer(pdfId: string, userId: string): Buffer {
   if (!pdf || pdf.userId !== userId) {
     throw Object.assign(new Error('PDF not found'), { status: 404 });
   }
-  const fileKey = decryptKeyWithMaster(pdf.encryptedKey);
-  const encryptedData = fs.readFileSync(pdf.encryptedPath);
-  return decryptBuffer(encryptedData, fileKey, pdf.iv, pdf.authTag);
+  return decryptPDFRecord(pdf);
 }
 
 export function listUserPDFs(userId: string) {
