@@ -1,18 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
+import { logger } from '../utils/logger';
 
 export const errorMiddleware = (
   err: any,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
-  const status = err.status || 500;
-  const message = err.message || 'Something went wrong';
-  
-  console.error(`[Error] ${status} - ${message}`);
-  
-  res.status(status).json({
-    status,
-    message,
-  });
+  const status: number = err.status ?? 500;
+  const message: string = err.message ?? 'Something went wrong';
+
+  if (status >= 500) logger.error(`[${status}] ${message}`, err);
+  else logger.warn(`[${status}] ${message}`);
+
+  res.status(status).json({ status, message });
 };

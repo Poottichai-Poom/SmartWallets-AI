@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m http.server 3000)",
+      "Bash(start *)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(py --version)",
+      "Bash(npx --version)",
+      "Bash(npx --yes serve -p 3000 .)",
+      "Bash(cmd.exe *)",
+      "Read(//mnt/c/Windows/System32/**)",
+      "Read(//c/Windows/System32/**)",
+      "Bash(/c/Windows/System32/cmd.exe *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(npx serve *)"
+    ]
+  }
+}
