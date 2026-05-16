@@ -231,7 +231,7 @@ Return ONLY: {"allocations": [...]}`;
     catch (err) {
         logger_1.logger.warn(`Ollama allocation failed, using fallback: ${err?.message}`);
     }
-    return FALLBACK_ALLOCATION.map(f => ({ ...f, amt: Math.round(totalIncome * f.pct / 100) }));
+    return FALLBACK_ALLOCATION.map(f => ({ ...f, amt: parseFloat((totalIncome * f.pct / 100).toFixed(2)) }));
 }
 async function generateSpendingAnalysis(transactions) {
     if (transactions.length === 0)
