@@ -1,4 +1,5 @@
 node_modules
+pdf_text_debug.txt
 .env
 /generated/prisma
 /uploads

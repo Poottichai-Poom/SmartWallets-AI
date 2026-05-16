@@ -56,7 +56,7 @@ const CATEGORIES: Record<string, { en: string; th: string; type: 'needs' | 'want
   fun:      { en: 'Entertainment', th: 'บันเทิง',      type: 'wants', keywords: ['major','sf cinema','steam','nintendo','playstation','concert','asiatique','cinema'] },
   subs:     { en: 'Subscriptions', th: 'สมัครสมาชิก',  type: 'wants', keywords: ['netflix','disney+','spotify','youtube premium','apple tv','icloud','adobe','notion','canva'] },
   misc:     { en: 'Misc',          th: 'อื่นๆ',        type: 'wants', keywords: ['atm fee','bank charge','fee','charge','misc','gift'] },
-  income:   { en: 'Income',        th: 'รายได้',      type: 'income', keywords: ['deposit', 'เงินเข้า', 'เงินโอนเข้า', 'salary', 'เงินเดือน', 'dividend', 'interest', 'กยศ', 'กองทุนให้กู้ยืม', 'education loan'] },
+  income:   { en: 'Income',        th: 'รายได้',      type: 'income', keywords: ['deposit', 'เงินเข้า', 'เงินโอนเข้า', 'salary', 'เงินเดือน', 'dividend', 'interest', 'กยศ', 'กองทุนให้กู้ยืม', 'education loan', 'iorsdt', 'morisd'] },
 };
 
 export function getCategoryList() {
@@ -70,12 +70,15 @@ export function categorize(merchant: string, note?: string, type?: 'debit' | 'cr
   const outgoingRe = /โอนเงินออก|transfer out|iorswt|morisw|morwsw|nmidsw/;
   if (outgoingRe.test(text)) return { catId: 'misc', type: 'wants' };
 
-  if (type === 'credit') return { catId: 'income', type: 'income' };
+  // Keyword matching takes priority over Ollama's type
   for (const [id, cat] of Object.entries(CATEGORIES)) {
     if (cat.keywords.some(kw => text.includes(kw))) {
       return { catId: id, type: cat.type };
     }
   }
+
+  // No keyword match — trust Ollama's type only for credit; unknown defaults to wants
+  if (type === 'credit') return { catId: 'income', type: 'income' };
   return { catId: 'misc', type: 'wants' };
 }
 
@@ -120,13 +123,23 @@ export async function extractTransactionsFromPDF(buffer: Buffer, bankPassword?: 
     throw new Error('ไม่สามารถอ่าน PDF ได้ — ตรวจสอบรหัสผ่าน PDF จากธนาคาร');
   }
 
+  // KTB statements have a predictable structured format — parse directly without Ollama
+  if (isKTBStatement(text)) {
+    const ktbTxns = parseKTBStatement(text);
+    if (ktbTxns.length > 0) {
+      logger.info(`KTB parser extracted ${ktbTxns.length} txns`);
+      return ktbTxns;
+    }
+    logger.warn('KTB statement detected but parser returned 0 txns — falling through to Ollama');
+  }
+
   const CHUNK = 3000;
   const allExtracted: ExtractedTransaction[] = [];
   for (let offset = 0; offset < text.length; offset += CHUNK) {
     const chunk = text.slice(offset, offset + CHUNK);
     try {
       const prompt = `Extract transactions from Thai bank statement chunk. Return JSON: {"transactions":[{date:"DD/MM/YY as-is from text",merchant:"name",amount:number,type:"debit"|"credit",balance:number,note:"raw"},...]}
-Rules: amount positive; credit=deposits/เงินเข้า/โอนเข้า/กยศ/CR, debit=withdrawals/โอนออก/ถอน/DR. Return date EXACTLY as it appears in the text (e.g. 01/02/69), do NOT convert. Return ONLY JSON.
+Rules: amount positive; credit=deposits/เงินเข้า/โอนเข้า/IORSDT/MORISD/กยศ/CR, debit=withdrawals/โอนออก/ถอน/IORSWT/MORISW/DR. If direction is unclear, default to debit. Return date EXACTLY as it appears in the text (e.g. 01/02/69), do NOT convert. Return ONLY JSON.
 
 ${chunk}`;
       const result = await ollamaJSON<{ transactions?: ExtractedTransaction[] }>(prompt);
@@ -143,12 +156,33 @@ ${chunk}`;
     }
   }
 
-  if (allExtracted.length > 0) {
-    logger.info(`Ollama extracted ${allExtracted.length} transactions total`);
-    return allExtracted;
+  // balance is unique per transaction in a bank statement — use it as the primary dedup key
+  const sameBalance = (a: ExtractedTransaction, b: ExtractedTransaction) =>
+    a.balance != null && b.balance != null && Math.abs(a.balance - b.balance) < 0.01 &&
+    Math.abs(a.amount - b.amount) < 0.01;
+
+  // Deduplicate Ollama results (same transaction extracted from overlapping chunks or wrong date)
+  const deduped: ExtractedTransaction[] = [];
+  for (const t of allExtracted) {
+    if (!deduped.some(d => sameBalance(d, t))) deduped.push(t);
   }
 
-  return parseTextFallback(text);
+  const fallback = parseTextFallback(text);
+
+  if (deduped.length === 0) {
+    logger.info(`Ollama extracted 0 txns — using fallback (${fallback.length} txns)`);
+    return fallback;
+  }
+
+  // Merge fallback results to catch any transactions Ollama missed
+  const missed = fallback.filter(fb => !deduped.some(d => sameBalance(d, fb)));
+  if (missed.length > 0) {
+    logger.info(`Fallback recovered ${missed.length} txns missed by Ollama`);
+    deduped.push(...missed);
+  }
+
+  logger.info(`Total extracted: ${deduped.length} txns (Ollama + fallback)`);
+  return deduped;
 }
 
 const FALLBACK_ALLOCATION = [
@@ -280,6 +314,62 @@ function generateFallbackAnalysisText(
     text += `แนะนำให้ติดตามรายจ่ายอย่างสม่ำเสมอและตั้งเป้าออมเพิ่มขึ้นเดือนละ 5%`;
   }
   return text;
+}
+
+function isKTBStatement(text: string): boolean {
+  return text.includes('ธนาคารกรุงไทย') || /krungthai/i.test(text);
+}
+
+// Dedicated parser for Krung Thai Bank (KTB) statement format.
+// Each transaction line: DD/MM/YY  MERCHANT(CODE)  REFERENCE  AMOUNT  BALANCE  BRANCHCODE
+function parseKTBStatement(text: string): ExtractedTransaction[] {
+  const results: ExtractedTransaction[] = [];
+  const lines = text.split('\n');
+
+  // Transaction line ends with: amount  balance  3-6 digit branch code
+  const lineRe = /^(\d{2}\/\d{2}\/\d{2})\s+(.*?)\s+([\d,]+\.\d{2})\s+([\d,]+\.\d{2})\s+\d{3,6}\s*$/;
+  // Merchant always ends with a method code in parens: e.g. (IORSWT), (MORPSW)
+  const splitRe = /^(.*?\([A-Z0-9]+\))\s+([\s\S]*)$/;
+
+  const incomeRe = /เงินโอนเข้า|iorsdt|morisd|education\s*loan|กยศ/i;
+
+  let prevBalance: number | null = null;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    const m = trimmed.match(lineRe);
+    if (!m) continue;
+
+    const rawDate = m[1];
+    const merchantAndRef = m[2];
+    const amount = parseFloat(m[3].replace(/,/g, ''));
+    const balance = parseFloat(m[4].replace(/,/g, ''));
+
+    if (isNaN(amount) || amount <= 0 || isNaN(balance)) continue;
+
+    const splitMatch = merchantAndRef.match(splitRe);
+    const merchant = splitMatch ? splitMatch[1].trim() : merchantAndRef.trim();
+    const note = splitMatch ? splitMatch[2].trim() : '';
+
+    // Determine credit/debit from running balance direction; fall back to keywords
+    let type: 'debit' | 'credit' = 'debit';
+    if (prevBalance !== null) {
+      const diff = balance - prevBalance;
+      if (Math.abs(diff - amount) < 0.02) type = 'credit';
+      else if (Math.abs(diff + amount) < 0.02) type = 'debit';
+      else type = incomeRe.test(merchant) ? 'credit' : 'debit';
+    } else {
+      type = incomeRe.test(merchant) ? 'credit' : 'debit';
+    }
+    prevBalance = balance;
+
+    const date = normalizeDateStr(rawDate);
+    if (!date) continue;
+
+    results.push({ date, merchant, amount, type, balance, note });
+  }
+
+  return results;
 }
 
 function parseTextFallback(text: string): ExtractedTransaction[] {

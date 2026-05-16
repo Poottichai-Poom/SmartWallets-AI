@@ -63,11 +63,14 @@ function importExtractedTransactions(userId, pdfId, extracted) {
             continue;
         if (t.amount <= 0)
             continue;
-        // Deduplication: same date+amount+merchant AND same balance (if available)
-        const isSameTxn = (a, b) => a.date === b.date &&
-            Math.abs(a.amount - b.amount) < 0.01 &&
-            a.merchant.toLowerCase().trim() === b.merchant.toLowerCase().trim() &&
-            (b.balance == null || a.balance == null || Math.abs((a.balance ?? 0) - (b.balance ?? 0)) < 0.01);
+        // balance is unique per transaction — use it as primary dedup key when available
+        const isSameTxn = (a, b) => {
+            if (a.balance != null && b.balance != null)
+                return Math.abs(a.balance - b.balance) < 0.01 && Math.abs(a.amount - b.amount) < 0.01;
+            return a.date === b.date &&
+                Math.abs(a.amount - b.amount) < 0.01 &&
+                a.merchant.toLowerCase().trim() === b.merchant.toLowerCase().trim();
+        };
         const isDupInDB = existing.some(e => isSameTxn(e, t));
         const isDupInBatch = toImport.some(i => isSameTxn(i, t));
         if (!isDupInDB && !isDupInBatch) {
