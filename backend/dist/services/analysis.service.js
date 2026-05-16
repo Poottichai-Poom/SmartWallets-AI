@@ -82,8 +82,7 @@ function getDailySpending(userId, month) {
 function getSpendingLeaks(userId, month) {
     const { items: transactions } = store_1.db.findTransactionsByUser(userId, { month, limit: 9999 });
     const expenses = transactions.filter(t => t.type !== 'income');
-    const summary = getMonthlySummary(userId, month);
-    const totalIncome = summary.totalIncome;
+    const totalIncome = transactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
     const categories = (0, ai_service_1.getCategoryList)();
     const byCat = {};
     for (const t of expenses) {

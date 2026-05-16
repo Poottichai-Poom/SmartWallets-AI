@@ -39,19 +39,19 @@ export function getMonthlySummary(userId: string, month: string) {
       en: cat.en,
       th: cat.th,
       type: cat.type,
-      amt: Math.round(byCat[cat.id]?.amt ?? 0),
+      amt: parseFloat((byCat[cat.id]?.amt ?? 0).toFixed(2)),
       txns: byCat[cat.id]?.txns ?? 0,
       trend: 0,
     })).filter(c => c.txns > 0);
 
   return {
     month,
-    totalIncome: Math.round(totalIncome),
-    totalExpenses: Math.round(totalExpenses),
-    needsTotal: Math.round(needsTotal),
-    wantsTotal: Math.round(wantsTotal),
-    savingsRate: parseFloat(savingsRate.toFixed(1)),
-    endingBalance: Math.round(endingBalance),
+    totalIncome: parseFloat(totalIncome.toFixed(2)),
+    totalExpenses: parseFloat(totalExpenses.toFixed(2)),
+    needsTotal: parseFloat(needsTotal.toFixed(2)),
+    wantsTotal: parseFloat(wantsTotal.toFixed(2)),
+    savingsRate: parseFloat(savingsRate.toFixed(2)),
+    endingBalance: parseFloat(endingBalance.toFixed(2)),
     categories: categorySummaries,
   };
 }
@@ -80,7 +80,7 @@ export function getDailySpending(userId: string, month: string): number[] {
     if (day >= 0 && day < daysInMonth) daily[day] += t.amount;
   }
 
-  return daily.map(v => Math.round(v));
+  return daily.map(v => parseFloat(v.toFixed(2)));
 }
 
 export function getSpendingLeaks(userId: string, month: string) {
@@ -109,10 +109,10 @@ export function getSpendingLeaks(userId: string, month: string) {
         id: catId,
         en: cat?.en ?? catId,
         th: cat?.th ?? catId,
-        detail: `Spent ฿${Math.round(spent).toLocaleString()} vs budget ฿${Math.round(budget).toLocaleString()}`,
-        detailEn: `Spent ฿${Math.round(spent).toLocaleString()} — budget ฿${Math.round(budget).toLocaleString()}`,
-        amt: Math.round(spent),
-        over: Math.round(over),
+        detail: `Spent ฿${spent.toFixed(2)} vs budget ฿${budget.toFixed(2)}`,
+        detailEn: `Spent ฿${spent.toFixed(2)} — budget ฿${budget.toFixed(2)}`,
+        amt: parseFloat(spent.toFixed(2)),
+        over: parseFloat(over.toFixed(2)),
         severity: over > budget * 0.5 ? 'high' : over > budget * 0.2 ? 'medium' : 'low',
         cat: catId,
       };

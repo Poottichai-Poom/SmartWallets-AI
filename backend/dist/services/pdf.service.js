@@ -21,9 +21,13 @@ const audit_service_1 = require("./audit.service");
 const UPLOAD_DIR = path_1.default.resolve(process.env.UPLOAD_DIR ?? './uploads');
 const SESSION_MINUTES = parseInt(process.env.PDF_ACCESS_SESSION_MINUTES ?? '30', 10);
 const SALT_ROUNDS = 12;
+function decryptPDFRecord(pdf) {
+    const fileKey = (0, encryption_service_1.decryptKeyWithMaster)(pdf.encryptedKey);
+    const encryptedData = fs_1.default.readFileSync(pdf.encryptedPath);
+    return (0, encryption_service_1.decryptBuffer)(encryptedData, fileKey, pdf.iv, pdf.authTag);
+}
 async function storePDF(userId, originalName, fileBuffer, month) {
-    if (!fs_1.default.existsSync(UPLOAD_DIR))
-        fs_1.default.mkdirSync(UPLOAD_DIR, { recursive: true });
+    fs_1.default.mkdirSync(UPLOAD_DIR, { recursive: true });
     const fileKey = (0, encryption_service_1.generateFileKey)();
     const { encrypted, iv, authTag } = (0, encryption_service_1.encryptBuffer)(fileBuffer, fileKey);
     const encryptedKey = (0, encryption_service_1.encryptKeyWithMaster)(fileKey);
@@ -77,9 +81,7 @@ function getDecryptedPDF(pdfId, userId, sessionToken, req) {
     if (!pdf || pdf.userId !== userId) {
         throw Object.assign(new Error('Access denied'), { status: 403 });
     }
-    const fileKey = (0, encryption_service_1.decryptKeyWithMaster)(pdf.encryptedKey);
-    const encryptedData = fs_1.default.readFileSync(pdf.encryptedPath);
-    const buffer = (0, encryption_service_1.decryptBuffer)(encryptedData, fileKey, pdf.iv, pdf.authTag);
+    const buffer = decryptPDFRecord(pdf);
     (0, audit_service_1.logAction)('PDF_DOWNLOADED', `pdf:${pdfId}`, { userId, req });
     return { buffer, originalName: pdf.originalName };
 }
@@ -88,9 +90,7 @@ function getPDFBuffer(pdfId, userId) {
     if (!pdf || pdf.userId !== userId) {
         throw Object.assign(new Error('PDF not found'), { status: 404 });
     }
-    const fileKey = (0, encryption_service_1.decryptKeyWithMaster)(pdf.encryptedKey);
-    const encryptedData = fs_1.default.readFileSync(pdf.encryptedPath);
-    return (0, encryption_service_1.decryptBuffer)(encryptedData, fileKey, pdf.iv, pdf.authTag);
+    return decryptPDFRecord(pdf);
 }
 function listUserPDFs(userId) {
     return store_1.db.findPDFsByUser(userId).map(({ encryptedPath, encryptedKey, iv, authTag, passwordHash, ...safe }) => safe);

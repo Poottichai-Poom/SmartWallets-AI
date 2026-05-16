@@ -44,9 +44,7 @@ class Store {
             this.persist();
     }
     persist() {
-        const dir = path_1.default.dirname(this.filePath);
-        if (!fs_1.default.existsSync(dir))
-            fs_1.default.mkdirSync(dir, { recursive: true });
+        fs_1.default.mkdirSync(path_1.default.dirname(this.filePath), { recursive: true });
         fs_1.default.writeFileSync(this.filePath, JSON.stringify(this.data, null, 2));
     }
     // ── Users ──────────────────────────────────────────────────────────────────
@@ -177,6 +175,26 @@ class Store {
             this.persist();
         return deleted;
     }
+    syncMerchantCategory(userId, excludeId, merchantKey, catId, type) {
+        let count = 0;
+        const now_ = now();
+        for (const t of this.data.transactions) {
+            if (t.id === excludeId || t.userId !== userId)
+                continue;
+            const key = t.note?.match(/\((\w+)\)\s+(\S+)/)
+                ? `${t.note.match(/\((\w+)\)\s+(\S+)/)[1]}:${t.note.match(/\((\w+)\)\s+(\S+)/)[2].replace(/~+$/, '')}`.toLowerCase()
+                : t.merchant.toLowerCase().trim();
+            if (key === merchantKey) {
+                t.catId = catId;
+                t.type = type;
+                t.updatedAt = now_;
+                count++;
+            }
+        }
+        if (count > 0)
+            this.persist();
+        return count;
+    }
     deleteTransactionsByPdf(pdfId, userId) {
         const before = this.data.transactions.length;
         this.data.transactions = this.data.transactions.filter(t => !(t.pdfId === pdfId && t.userId === userId));
@@ -261,8 +279,7 @@ class Store {
     createAuditLog(data) {
         const log = { ...data, id: (0, uuid_1.v4)(), createdAt: now() };
         this.data.auditLogs.push(log);
-        if (this.data.auditLogs.length % 100 === 0)
-            this.persist();
+        this.persist();
         return log;
     }
     findAuditLogs(page = 1, limit = 50) {
